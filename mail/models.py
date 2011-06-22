@@ -438,5 +438,12 @@ class Email(models.Model):
 
     objects = EmailManager()
 
+
+class EmailEntity(models.Model):
+    mail        = models.ForeignKey(Email,on_delete=models.PROTECT)
+    entity      = models.ForeignKey('dcentity.Entity', on_delete=models.PROTECT)
+    entity_type = models.CharField(max_length=128)
+    references  = models.TextField()
+
         
         

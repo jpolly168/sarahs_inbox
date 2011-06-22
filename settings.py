@@ -109,6 +109,8 @@ INSTALLED_APPS = (
     'mail_dedupe',
     'mediasync',
     'haystack',
+    'oxtail.matching',
+    'dcentity'
 )
 
 try:

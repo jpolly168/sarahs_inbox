@@ -7,3 +7,5 @@ parsed/failures
 parsed/source.bak*
 whoosh/*
 data
+build/*
+mail/fixtures/*
