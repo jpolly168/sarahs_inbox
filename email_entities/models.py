@@ -1,6 +1,6 @@
 from django.db import models
 from mail.models import *
-from dcentity.models import *
+#from dcentity.models import *
 
 #This is for building the database of associations. In the future we should probably just connect
 #the inbox up to the transparency data api or something similar.

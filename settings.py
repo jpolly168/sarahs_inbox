@@ -1,7 +1,7 @@
 import os
 
-DEBUG = False
-TEMPLATE_DEBUG = DEBUG
+DEBUG = True
+TEMPLATE_DEBUG = True
 
 ADMINS = (
     ('Tom Lee', 'tlee@sunlightfoundation.com'),
@@ -109,8 +109,6 @@ INSTALLED_APPS = (
     'mail_dedupe',
     'mediasync',
     'haystack',
-    'oxtail.matching',
-    'dcentity'
 )
 
 try:
