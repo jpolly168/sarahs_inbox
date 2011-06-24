@@ -15,3 +15,5 @@ class EmailEntity(models.Model):
 class EmailEntityIndustry(models.Model):
     industry    = models.CharField(max_length=128)
     entity      = models.ForeignKey(EmailEntity)
+    email       = models.ForeignKey(Email)
+    thread      = models.ForeignKey(Thread)

@@ -41,7 +41,8 @@ var starred = GetArrayOfIDs('kagan_star');
         <script type="text/javascript">document.write((IsMarked(read, '{{ thread.id }}')) ? '<tr>' : '<tr class="unread">');</script><noscript><tr></noscript>
           <script type="text/javascript">document.write((IsMarked(starred, '{{ thread.id }}')) ? '<td class="star"><a href="#" rel="{{ thread.id }}" class="star on"></a></td>' : '<td class="star"><a href="#" rel="{{ thread.id }}" class="star"></a></td>');</script>
           <td class="name"><a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{% if thread.creator.is_kagan %}To: {% endif %}{{ thread.all_recipient_html|safe|striptags }}{% if thread.count > 1 %} ({{ thread.count}}){% endif %}</a></td>
-          <td class="subject"><a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{% if thread.name %}{{ thread.name|safe }}{% else %}(No subject){% endif %}</a></td>
+          <td class="subject">
+			{% for industry in thread.industries %}[{{industry.industry}}]{% endfor %}<a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{% if thread.name %}{{ thread.name|safe }}{% else %}(No subject){% endif %}</a></td>
           <td class="date"><a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{{ thread.date|date:"SHORT_DATE_FORMAT" }}</a></td>
         </tr>
       

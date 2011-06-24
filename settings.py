@@ -2,6 +2,7 @@ import os
 
 DEBUG = True
 TEMPLATE_DEBUG = True
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 ADMINS = (
     ('Tom Lee', 'tlee@sunlightfoundation.com'),
@@ -49,12 +50,12 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_ROOT, 'media')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
@@ -65,6 +66,13 @@ ADMIN_MEDIA_PREFIX = 'http://assets.sunlightfoundation.com/admin/8961/'
 SECRET_KEY = '%d*b8@@%a930evkf*#p+_41!7haf1wiz3_ihk)=v$$p#l!qcbl'
 
 # List of callables that know how to import templates from various sources.
+
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+
+TEMPLATE_DIRS = (
+    os.path.join(PROJECT_ROOT, 'templates')
+)
+
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
@@ -95,9 +103,6 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'urls'
 
-TEMPLATE_DIRS = (
-)
-
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -109,6 +114,7 @@ INSTALLED_APPS = (
     'mail_dedupe',
     'mediasync',
     'haystack',
+    'email_entities'
 )
 
 try:

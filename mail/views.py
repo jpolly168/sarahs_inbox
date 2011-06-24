@@ -5,10 +5,13 @@ from django.http import HttpResponse, HttpResponseRedirect
 from urllib import unquote
 from haystack.query import SearchQuerySet
 from mail.models import *
+from email_entities.models import *
 from django.db.models import Q
 from django.core.urlresolvers import reverse
 from django.core.cache import cache
 import re
+import json
+from django.template.defaultfilters import slugify
 
 
 RESULTS_PER_PAGE = 50
@@ -73,18 +76,27 @@ def _prepare_ids_from_cookie(request, cookie_name, method=None):
     
 def _annotate_emails(emails, search=[]):
     r = []
+    emails = _create_entity_links(emails)
     for email in emails:
         email.text = _highlight(email.text, search)
         r.append({ 'creator_html': email.creator_html(), 'to_html': email.to_html(), 'cc_html': email.cc_html(), 'obj': email })
     return r
 
+def _create_entity_links(emails):
+    for email in emails:
+        entities = EmailEntity.objects.filter(mail=email)
+        for entity in entities:
+            ref_array = json.loads(entity.references)
+            for r in ref_array:
+                link = '<a href="http://influenceexplorer.com/%s/%s/%s">%s</a>' % (entity.entity_type, slugify(entity.entity_name),entity.entity,r)
+                email.text = email.text.replace(r, link)
+    return emails
 
 def index(request, search=[], threads=None):
     
     if threads is None:
         palin = Person.objects.sarah_palin()
         threads = Thread.objects.exclude(creator__in=palin).order_by('-date')
-
     threads_count = threads.count()
         
     p = Paginator(threads, RESULTS_PER_PAGE)
@@ -102,6 +114,7 @@ def index(request, search=[], threads=None):
             thread = thread.object
 
         thread.name = _highlight(thread.name, search)
+        thread.industries = EmailEntityIndustry.objects.filter(thread=thread).exclude(industry__icontains="unknown").values().distinct
         highlighted_threads.append(thread)
             
     template_vars = {
