@@ -466,3 +466,101 @@ label#back-wrapper a:hover { text-decoration: underline;}
 }
 
 #error-container { padding: 10px; }
+.label {
+    font-size:small;
+    text-transform:capitalize;
+    text-transform:lowercase;
+    border-radius:3px;
+}
+.online-computer-services {
+	background-color:#dee4f3;
+	color:#6e7898
+}
+.accident-health-insurance {
+	background-color:#dfebff;
+	color:#5166ff
+}
+.commercial-banks {
+	background-color:#e1dfff;
+	color:#4b00da
+}
+.transportation {
+	background-color:#e5d0fc;
+	color:#7615b5
+}
+.water-utilities {
+	background-color:#ffe6f4;
+	color:#9f5f77
+}
+.engineering-architecture-construction-mgmt-svcs {
+	background-color:#ffe1e2;
+	color:#e30005
+}
+.other-single-issue-or-ideological-groups {
+	background-color:#5a6688;
+	color:#c9d1e2
+}
+.fisheries-wildlife {
+	background-color:#4646ff;
+	color:#c2d4ff
+}
+.private-equity-investment-firms {
+	background-color:#4000d3;
+	color:#c1b7fb
+}
+.home-builders {
+	background-color:#6300a8;
+	color:#d1b2ee
+}
+.abortion-policypro-choice {
+	background-color:#8d4761;
+	color:#efcedd
+}
+.other-non-physician-health-practitioners {
+	background-color:#dc0000;
+	color:#ffbcbf
+}
+.forestry-forest-products {
+	background-color:#fff1df;
+	color:#fa7f00
+}
+.accountants {
+	background-color:#fddeae;
+	color:#c47e00
+}
+.indian-gaming {
+	background-color:#f2ebad;
+	color:#767e43
+}
+.republican-based-groups-but-not-official-party-committees-and-generic-conservative-ones {
+	background-color:#f7ffee;
+	color:#64b13b
+}
+.alternate-energy-production-services {
+	background-color:#fa6800;
+	color:#ffddba
+}
+.pro-israel {
+	background-color:#ba6c00;
+	color:#f2cd90
+}
+.civil-servantspublic-officials {
+	background-color:#ac9000;
+	color:#e5dd8f
+}
+.hotels-motels {
+	background-color:#5f6728;
+	color:#e4ebb6
+}
+.health-care-services {
+	background-color:#48a20f;
+	color:#ddf3cf
+}
+.other-financial-services {
+	background-color:#006c2e;
+	color:#c7e2ce
+}
+.misc-energy {
+	background-color:#c7e2ce;
+	color:#006c2e
+}

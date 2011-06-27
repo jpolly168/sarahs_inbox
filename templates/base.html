@@ -1,146 +1,150 @@
-{% load media %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head profile="http://gmpg.org/xfn/11">
-  <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="google-site-verification" content="rsqERvNLFQCcBhSHdqEL469PQfjGxidURUqqt1BugK8" />
-  <title>{% block page_title %}Sarah's Inbox | A Project of the Sunlight Foundation{% endblock %}</title>
-  <link rel="stylesheet" href="{% media_url %}/style.css" type="text/css" media="screen" />
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
-  <script type="text/javascript" src="{% media_url %}/scripts/jquery.cookie.js"></script>
-  <script type="text/javascript" src="http://services.sunlightlabs.com/brandingbar/hat_js/elenasinbox/"></script>
-  <script type="text/javascript">
-
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-1265484-57']);
-    _gaq.push(['_setDomainName', 'none']);
-    _gaq.push(['_setAllowLinker', true]);
-    _gaq.push(['_trackPageview']);
-
-    $(document).ready(function () {
-        $("#showstarred").bind('click', function () {
-            var cookie = $.cookie('kagan_star');
-            $("input#kagan_star").val(cookie);
-            $("form#starredbyme").submit();
-        });
-    });
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-
-    function RecordID(cookie_name, id) {
-      var current_cookie = $.cookie(cookie_name);
-      if (current_cookie===null)
-        current_cookie = '';
-      var cookie_array = current_cookie.split(',');
-      cookie_array.push(id);
-      $.cookie(cookie_name, cookie_array.join(','), { path: '/', expires: 365 });
-    }
-
-    function RemoveID(cookie_name, id) {
-      var current_cookie = $.cookie(cookie_name);
-      var cookie_array = current_cookie.split(',');
-      var new_cookie_array = Array();
-      for(var i=0;i<cookie_array.length;i++)
-        if((cookie_array[i]!=id)&&(cookie_array[i]!=''))
-          new_cookie_array.push(cookie_array[i]);
-      $.cookie(cookie_name, new_cookie_array.join(','), { path: '/', expires: 365 });
-    }
+{% load media %}<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>        <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>        <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>        <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
     
-    function GetArrayOfIDs(cookie_name) {
-      cookie = $.cookie(cookie_name);
-      if (cookie==null) {
-        return new Array();
-      }
-      else {
-        var arr = new Array()
-        var entries = cookie.split(',');
-        for(var i=0;i<entries.length;i++)
-          arr['_' + entries[i]] = true;
-        return arr;
-      }
-    }
+    <meta charset="utf-8">
+    <meta name="description" content="">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="google-site-verification" content="rsqERvNLFQCcBhSHdqEL469PQfjGxidURUqqt1BugK8" />
+    <title>{% block page_title %}Sarah's Inbox | A Project of the Sunlight Foundation{% endblock %}</title>
     
-    function IsMarked(arr, v) {
-      return !(arr['_' + v]==undefined);
-    }
+    <link rel="stylesheet" href="{% media_url %}/main.css" type="text/css" media="screen" />
+    <!--[if IE 7]>{% css "styles/buggy_7.css" %}<![endif]-->
+	<script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="{% media_url %}/scripts/jquery.cookie.js"></script>
+	<script type="text/javascript" src="http://services.sunlightlabs.com/brandingbar/hat_js/elenasinbox/"></script>
+	<script type="text/javascript">
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-1265484-57']);
+	  _gaq.push(['_setDomainName', 'none']);
+	  _gaq.push(['_setAllowLinker', true]);
+	  _gaq.push(['_trackPageview']);
 
-  </script>
+	  $(document).ready(function () {
+	      $("#showstarred").bind('click', function () {
+	          var cookie = $.cookie('kagan_star');
+	          $("input#kagan_star").val(cookie);
+	          $("form#starredbyme").submit();
+	      });
+	  });
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	  function RecordID(cookie_name, id) {
+	    var current_cookie = $.cookie(cookie_name);
+	    if (current_cookie===null)
+	      current_cookie = '';
+	    var cookie_array = current_cookie.split(',');
+	    cookie_array.push(id);
+	    $.cookie(cookie_name, cookie_array.join(','), { path: '/', expires: 365 });
+	  }
+
+	  function RemoveID(cookie_name, id) {
+	    var current_cookie = $.cookie(cookie_name);
+	    var cookie_array = current_cookie.split(',');
+	    var new_cookie_array = Array();
+	    for(var i=0;i<cookie_array.length;i++)
+	      if((cookie_array[i]!=id)&&(cookie_array[i]!=''))
+	        new_cookie_array.push(cookie_array[i]);
+	    $.cookie(cookie_name, new_cookie_array.join(','), { path: '/', expires: 365 });
+	  }
+  
+	  function GetArrayOfIDs(cookie_name) {
+	    cookie = $.cookie(cookie_name);
+	    if (cookie==null) {
+	      return new Array();
+	    }
+	    else {
+	      var arr = new Array()
+	      var entries = cookie.split(',');
+	      for(var i=0;i<entries.length;i++)
+	        arr['_' + entries[i]] = true;
+	      return arr;
+	    }
+	  }
+  
+	  function IsMarked(arr, v) {
+	    return !(arr['_' + v]==undefined);
+	  }
+
+	</script>
 
 </head>
 
 <body>
-<div id="wrap">
+<div id="container">
 
-  <div id="navigation">
-    <ul>
-      <li class="current_page_item"><a href="/">Home</a></li>
-      {# <li><a href="/">Contacts</a></li>       #}
-    </ul>
-    <div class="signout"><strong>Sarah Palin</strong>&nbsp;|&nbsp;<a href="http://www.sunlightfoundation.com">Sign out</a></div>
-  </div>
+  	<header>
+        <h1><a href="#">Sarah's Inbox <small>A project of the Sunlight Foundation</small></a></h1>
+        <nav>
+            <ul>
+                <li><a href="#">Sign Out</a></li>
+                <li id="navName">Sarah Palin</li>
+            </ul> 
+            <div class="clear"></div>   
+        </nav>
+        <form id="mainSearch" action="/search/" method="get">
+            <input id="id_search" type="text" name="skills"/>
+            <button class="searchBtn" type="submit">
+                <span>Search</span>
+            </button>
+        </form>
+        <div class="clear"></div>
+    </header>
+	
+	<div id="main">
+		<div id="sidebar">
+            <div id="mainFilter" class="module">
+                {% block navigation %}{% endblock %}
+            </div>
+            <div id="moduleSearches" class="module">  
+                <h3>Sample Searches</h3>
+                <ul>
+                    <li><a href="#">flippinbelieveit</a></li>
+                    <li><a href="#">"bridge to nowhere"</a></li>
+                    <li><a href="#">"Tina Fey"</a></li>
+                    <li><a href="#">"horrible people are bringing you down"</a></li>
+                    <li><a href="#">"Alaska natural gas pipeline"</a></li>
+                    <li><a href="#">"barack obama"</a></li>
+                    <li><a href="#">crud</a></li>
+                    <li><a href="#">"first dude"</a></li>
+                    <li><a href="#">"who leaked it?"</a></li>
+                    <li><a href="#">"What a dumbass he is"</a></li>
+                    <li><a href="#">"who's going to trim my hair?"</a></li>
+                    <li><a href="#">pizza</a></li>
+                </ul>    
+            </div> 
+        </div>
+  
+		<div id="content">
+			{% block content %}{% endblock %}
+		</div>
+		<div class="clear"></div>
+	</div>
 
-  <div id="header">
-    <a href="/"><img src="{% media_url %}/images/header-bg.png" id="logo" /><h1>Sarah's Inbox</h1></a>A project of the <a id="sunlight" href="http://www.sunlightfoundation.com">Sunlight Foundation</a>
-  </div>
-
-  <form method="get" id="top_search" action="/search/">
-    <input type="text" size="22" value="" name="q" id="top_text" /><input type="submit" id="top_submit" value="Search" />
-  </form>
-
-  <div id="content">
-    <div id="content_top"></div>
-		
-		{% block content %}{% endblock %}
-
-  	<div style="clear:both;height:10px;"></div>
-
-    <div id="content_bottom"></div>
-  </div>
-
-  <div id="sidebar">
-
-    <div id="first-box">
-      
-      {% block navigation %}{% endblock %}
-
-    </div>
-
-  	<h2>Sample Searches</h2>
-  	<ul>
-  	  <li><a href="/search/?q=%22brady+checks%22">"Brady checks"</a></li>
-  	  <li><a href="/search/?q=firestorm">firestorm</a></li>
-  	  <li><a href="/search/?=%225th commandment%22">"5th commandment"</a></li>
-  	  <li><a href="/search/?q=%22making+the+President+look+like+a+liar%22">"making the President look like a liar"</a></li>
-  	  <li><a href="/search/?q=%22pervasively+sectarian%22">"pervasively sectarian"</a></li>
-  	  <li><a href="/search/?q=unbelievable">unbelievable</a></li>
-  	  <li><a href="/search/?q=%22red sage%22">"red sage"</a></li>
-  	</ul>
-  	
-  	
-  	<div class="green">
-  	<h2>About</h2>
-  	<ul>
-  	  <li>This site parses the emails <a class="underline" href="http://www.crivellawest.net/palinAll/search.html">sent and received</a> by Sarah Palin while she was governor of Alaska and presents them in a more familiar interface.</li>
-  	  <li>You may find that some records are garbled or incomplete, or that conversations are fractured.  Please bear with us: the source documents are extremely messy.  We're working to improve the quality of the documents hosted here.</li>
-  	  <li>Due to the programmatic nature of the tools used to build this site, we recommend checking any research effort against the source files.</li>
-  	</ul>
-  	</div>
-			
-  </div>
-
-  {% comment %}
-  <div id="coverage">
-    You are able to view 26,108 of the 29,281 released emails (89.1%)
-  </div>
-  {% endcomment %}
-
-  <div id="footer">
-    Design adapted from WP theme by <a href="http://www.bingowebdesign.info">Bingo</a>&nbsp;|&nbsp;Source code and data available via <a href="http://github.com/sunlightlabs/sarahs_inbox/">GitHub</a>
-  </div>
+  	<footer>
+      <div id="description">
+          <p>This site parses the emails sent and received by Sarah Palin while she was governor of Alaska and presents them in a more familiar interface.</p>
+          <p>To create Sarah’s Inbox, we used the digitized emails released by Crivella West, Mother Jones, ProPublica and msnbc.com. (Those groups undertook the Herculean tasks of purchasing, collecting thousands of pages of printed emails, scanning and digitizing the emails using optical character recognition technology.)</p>
+          <p>You may find that some records are garbled or incomplete, or that conversations are fractured or threaded when they should not be. Please bear with us: the source documents are extremely messy and the OCR technology is less than perfect. We're working to improve the quality of the documents hosted here.</p>
+          <p>Due to the programmatic nature of the tools used to build this site, we recommend checking any research effort against the source files.</p>
+      </div>
+      <div id="likeThis">
+          <h4>Like Sarah's Inbox</h4>
+          <p>Help support this and other transparency projects by the <a href="http://sunlightfoundation.com/">Sunlight Foundation</a>.</p>
+          <a id="dontateBtn" href="#">Donate Now!</a>
+      </div>    
+      <div class="clear"></div>
+  </footer>
   
 </div>
 

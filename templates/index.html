@@ -6,13 +6,13 @@
 
 {% block navigation %}
 <ul>
-  <li><a href="/"{% if path == '/' %} class="current"{% endif %}>Inbox</a></li>
-  <li><a href="/sent/"{% if path == '/sent/' %} class="current"{% endif %}>Sent Mail</a></li>
+  <li{% if path == '/' %} class="filterActive"{% endif %}><a href="/">Inbox</a></li>
+  <li{% if path == '/sent/' %} class="current"{% endif %}><a href="/sent/">Sent Mail</a></li>
   <li class="disabled">Drafts</li>
   <li class="disabled">All Mail</li>
-  <li><a href="/starred/all/"{% if path == '/starred/all/' %} class="current"{% endif %}>Starred (all)</a></li>
-  {#<li><a href="/starred/"{% if path == '/starred/' %} class="current"{% endif %}>Starred (by you)</a>#}
-  <li><a id="showstarred" href="#"{% if path == '/starred/' %} class="current"{% endif %}>Starred (by you)</a>
+  <li{% if path == '/starred/all/' %} class="filterActive"{% endif %}><a href="/starred/all/">Starred (all)</a></li>
+  {#<li><a href="/starred/"{% if path == '/starred/' %} class="filterActive"{% endif %}>Starred (by you)</a>#}
+  <li><a id="showstarred" href="#"{% if path == '/starred/' %} class="filterActive"{% endif %}>Starred (by you)</a>
   <form name="starredbyme" id="starredbyme" method="post" action="/starred/">
       {% csrf_token %}
       <input type="hidden" name="kagan_star" id="kagan_star"/>
@@ -28,28 +28,30 @@ var read = GetArrayOfIDs('kagan_read');
 var starred = GetArrayOfIDs('kagan_star');
 </script>
 
+
 {% for thread in threads %}
 
   {% if forloop.first %}
-    <div id="mail-index-wrapper">
       {% if search %}<label id="search-results" class="top-explanation">Search results for: {{ search }}</label>{% endif %}
       {% if path == '/starred/all/' %}<label class="top-explanation">Messages by number of stars awarded by all users (including you)</label>{% endif %}
       {% if path == '/starred/' %}<label class="top-explanation">Messages you have starred</label>{% endif %}
-      <table id="mail-index">
+      <table id="mainView">
+		<tbody>
   {% endif %}
 
         <script type="text/javascript">document.write((IsMarked(read, '{{ thread.id }}')) ? '<tr>' : '<tr class="unread">');</script><noscript><tr></noscript>
-          <script type="text/javascript">document.write((IsMarked(starred, '{{ thread.id }}')) ? '<td class="star"><a href="#" rel="{{ thread.id }}" class="star on"></a></td>' : '<td class="star"><a href="#" rel="{{ thread.id }}" class="star"></a></td>');</script>
-          <td class="name"><a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{% if thread.creator.is_kagan %}To: {% endif %}{{ thread.all_recipient_html|safe|striptags }}{% if thread.count > 1 %} ({{ thread.count}}){% endif %}</a></td>
+          <script type="text/javascript">document.write((IsMarked(starred, '{{ thread.id }}')) ? '<td class="starColumn"><a href="#" rel="{{ thread.id }}" class="star on"></a></td>' : '<td class="starColumn"><a href="#" rel="{{ thread.id }}" class="star"></a></td>');</script>
+          <td class="mainSender"><a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{% if thread.creator.is_kagan %}To: {% endif %}{{ thread.all_recipient_html|safe|striptags }}{% if thread.count > 1 %} ({{ thread.count}}){% endif %}</a></td>
           <td class="subject">
-			{% for industry in thread.industries %}[{{industry.industry}}]{% endfor %}<a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{% if thread.name %}{{ thread.name|safe }}{% else %}(No subject){% endif %}</a></td>
-          <td class="date"><a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{{ thread.date|date:"SHORT_DATE_FORMAT" }}</a></td>
+			{% for industry in thread.industries %}
+			<span class="label {{industry.industry|slugify}}">{{industry.industry}}</span>
+			{% endfor %}<a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{% if thread.name %}{{ thread.name|safe }}{% else %}(No subject){% endif %}</a></td>
+          <td class="dateColumn"><a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{{ thread.date|date:"SHORT_DATE_FORMAT" }}</a></td>
         </tr>
       
   {% if forloop.last %}
-      </table>
-    </div>
-     
+	</tbody>
+  </table>
     <div id="page-navigation">
       {% if prev %}
         <a href="{{ path }}?page={{ first }}{% if search %}&q={{ search_orig }}{% endif %}">&laquo;&nbsp;Newest</a>

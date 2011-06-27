@@ -1,0 +1,130 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>        <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>        <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>        <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    
+    <meta charset="utf-8">
+    <meta name="description" content="">
+
+    <title>Sarah's Inbox</title>
+    
+    <link rel="stylesheet" href="main.css" type="text/css" media="screen" />
+    <!--[if IE 7]>{% css "styles/buggy_7.css" %}<![endif]-->
+    
+</head>
+<body>
+    <div id="container">
+        <header>
+            <h1 class="clear"><a href="#">Sarah's Inbox <small>A project of the Sunlight Foundation</small></a></h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Sign Out</a></li>
+                    <li id="navName">Sarah Palin</li>
+                </ul> 
+                <div class="clear"></div>   
+            </nav>
+            <form id="mainSearch" action="/search/" method="get">
+                <input id="id_search" type="text" name="skills"/>
+                <button class="searchBtn" type="submit">
+                    <span>Search</span>
+                </button>
+            </form>
+            <div class="clear"></div>
+        </header>
+        <div id="main">
+            <div id="sidebar">
+                <div id="mainFilter" class="module">
+                    <ul>
+                        <li class="filterActive"><a href="#">Inbox</a></li>
+                        <li><a href="#">Sent Mail</a></li>
+                        <li><a href="#">Drafts</a></li>
+                        <li><a href="#">All Mail</a></li>
+                        <li><a href="#">Starred (all)</a></li>
+                        <li><a href="#">Starred (by you)</a></li>
+                    </ul>
+                </div>
+                <div id="moduleSearches" class="module">  
+                    <h3>Sample Searches</h3>
+                    <ul>
+                        <li><a href="#">flippinbelieveit</a></li>
+                        <li><a href="#">"bridge to nowhere"</a></li>
+                        <li><a href="#">"Tina Fey"</a></li>
+                        <li><a href="#">"horrible people are bringing you down"</a></li>
+                        <li><a href="#">"Alaska natural gas pipeline"</a></li>
+                        <li><a href="#">"barack obama"</a></li>
+                        <li><a href="#">crud</a></li>
+                        <li><a href="#">"first dude"</a></li>
+                        <li><a href="#">"who leaked it?"</a></li>
+                        <li><a href="#">"What a dumbass he is"</a></li>
+                        <li><a href="#">"who's going to trim my hair?"</a></li>
+                        <li><a href="#">pizza</a></li>
+                    </ul>    
+                </div> 
+            </div>
+            <div id="content">
+                <div id="backBar">
+                    <a href="#">« Back to Inbox</a>
+                </div>
+                <div class="messageContent">
+                    <div class="mainMessTitle">
+                        <h2 class="messageTitle"><a href="#">Re: Keller asked to resign</a></h2>
+                        <span class="tag titleTag">Lobbyist</span>
+                        <div class="clear"></div>
+                    </div>
+                    <table id="internalTable">
+                        <tbody>
+                            <tr class="read">
+                                <td><a class="star" href="#">Star</a></td>
+                                <td class="largerCell">
+                                    <span class="sender">Gab</span>
+                                    <span>
+                                        to
+                                        <span>Tom</span>,
+                                        <span>Gab</span>,
+                                        <span>Ali</span>
+                                    </span>
+                                </td>
+                                <td>10:41 AM 01 Jul 2008</td>
+                                <td><a class="originalLink" href="#">View Original</a></td>
+                            </tr>
+                        </tbody>
+                    </table>        
+                    <div>
+                        By Michael Rovito / Frontiersman
+                        <br>
+                          Published on Tuesday , July 1, 2008 10:17 AM AKDT
+                          <br>
+                         WASILLR -- The Wasilla City Council voted late Monday night to approve a
+                         <br>
+                         resolution asking Mayor Dianne M. Keller to resign.
+                         <br>
+                         <br>
+                         <br>
+                         The decision came after hours of testimony from the public , Keller and other city officials involved in a damaging report from an independent law firm accusing some in the city of acting inappropriately in dealings with a privat developer.
+                         <br>
+                         The resolution passed 4-1, with Deputy Mayor Kristofer D. Larson in . oppositic Councilman Doug Holler was not present at the meeting.
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>    
+        </div>
+        <footer>
+            <div id="description">
+                <p>This site parses the emails sent and received by Sarah Palin while she was governor of Alaska and presents them in a more familiar interface.</p>
+                <p>To create Sarah’s Inbox, we used the digitized emails released by Crivella West, Mother Jones, ProPublica and msnbc.com. (Those groups undertook the Herculean tasks of purchasing, collecting thousands of pages of printed emails, scanning and digitizing the emails using optical character recognition technology.)</p>
+                <p>You may find that some records are garbled or incomplete, or that conversations are fractured or threaded when they should not be. Please bear with us: the source documents are extremely messy and the OCR technology is less than perfect. We're working to improve the quality of the documents hosted here.</p>
+                <p>Due to the programmatic nature of the tools used to build this site, we recommend checking any research effort against the source files.</p>
+            </div>
+            <div id="likeThis">
+                <h4>Like Sarah's Inbox</h4>
+                <p>Help support this and other transparency projects by the <a href="http://sunlightfoundation.com/">Sunlight Foundation</a>.</p>
+                <a id="dontateBtn" href="#">Donate Now!</a>
+            </div>    
+            <div class="clear"></div>
+        </footer>    
+    </div>
+</body>
+</html>

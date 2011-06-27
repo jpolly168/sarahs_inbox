@@ -1,0 +1,294 @@
+/*  HTML5 ✰ Boilerplate  */
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,  footer, header, hgroup, 
+menu, nav, section, summary, time, mark, audio, video {
+  margin:0;
+  padding:0;
+  border:0;
+  outline:0;
+  font-size:100%;
+  vertical-align:baseline;
+  background:transparent;
+}                  
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { display: block; }
+ul { list-style: none; }
+blockquote, q { 
+	background:url('../images/quotes.png') 12px top no-repeat ;
+	quotes: '»' '«' ;
+	margin-left:30px;
+    padding-left:35px;
+    border-left: 1px solid #E5E4DB;
+	color: #726B68; 
+	margin-bottom: 1em;
+	}
+	
+.pull_left, .pull_right { 
+	background:url('../images/quotes_lg.png') 12px 12px no-repeat ;
+	margin: 25px 65px 25px 30px;
+	padding: 15px 0 15px 35px;
+	color: #494442;
+	font-family: Georgia, "Times New Roman", Times, serif; 
+	font-style: oblique; 
+	font-size: 220%; 
+	display: block;
+	line-height: 38px;
+	text-align: center;
+	border-top: 1px solid #E5E4DB;
+	border-bottom: 1px solid #E5E4DB;
+	}
+	
+blockquote:before, blockquote:after,
+q:before, q:after { content:''; content:none; }
+
+a { margin:0; padding:0; font-size:100%; vertical-align:baseline; background:transparent; }
+ins { background-color:#ff9; color:#000; text-decoration:none; }
+mark { background-color:#ff9; color:#000; font-style:italic; font-weight:bold; }
+del { text-decoration: line-through; }
+abbr[title], dfn[title] { border-bottom:1px dotted; cursor:help; }
+table { border-collapse:collapse; border-spacing:0; }
+hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0; }
+input, select { vertical-align:middle; }
+
+body { color: #494442; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 22px; font-size: 13px; } 
+select, input, textarea, button { font: 99% sans-serif; }
+button.disabled { opacity: 0.3; filter: alpha(opacity=30); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"; }
+pre, code, kbd, samp { font-family: monospace, sans-serif; }
+p { margin-bottom: 1.3em;}
+
+html { overflow-y: scroll; }
+
+iframe { display: block; margin: 10px 0; }
+
+a:hover, a:active { outline: none; }
+a, a:active, a:visited { color: #2f4867; }
+a:hover { color: #15283f; }
+
+nav ul, nav li { margin: 0; } 
+small { font-size: 85%; }
+strong, th, b { font-weight: bold; }
+td, td img { vertical-align: top; } 
+sub { vertical-align: sub; font-size: smaller; line-height:1px;}
+sup { vertical-align: super; font-size: smaller; }
+pre {  padding: 15px;  white-space: pre;  white-space: pre-wrap;  white-space: pre-line;  word-wrap: break-word; }
+textarea { overflow: auto; } 
+.ie6 legend, .ie7 legend { margin-left: -7px; } 
+input[type="radio"] { vertical-align: text-bottom; }
+input[type="checkbox"] { vertical-align: bottom; }
+.ie7 input[type="checkbox"] { vertical-align: baseline; }
+.ie6 input { vertical-align: text-bottom; }
+label, input[type=button], input[type=submit] { cursor: pointer; }
+button, input, select, textarea { margin: 0; }
+input:invalid, textarea:invalid { border-radius: 1px;  -moz-box-shadow: 0px 0px 5px red; -webkit-box-shadow: 0px 0px 5px red;  box-shadow: 0px 0px 5px red; }
+.no-boxshadow input:invalid, 
+.no-boxshadow textarea:invalid { background-color: #f0dddd; }
+
+.normalForm label { width: 120px; display: block; float: left; text-transform: uppercase; font-weight: bold;}
+.normalForm input, .normalForm textarea { width: 300px;}
+.normalForm { margin-top: 30px;}
+
+::-moz-selection{ background: #CA5703; color:#fff; text-shadow: none; }
+::selection { background:#CA5703; color:#fff; text-shadow: none; } 
+a:link { -webkit-tap-highlight-color: #CA5703; } 
+
+.ie7 img { -ms-interpolation-mode: bicubic; }
+
+.ir { display: block; text-indent: -999em; overflow: hidden; background-repeat: no-repeat; text-align: left; direction: ltr; }
+.hidden { display: none; visibility: hidden; } 
+.visuallyhidden { position: absolute !important; clip: rect(1px 1px 1px 1px);  clip: rect(1px, 1px, 1px, 1px); }
+.invisible { visibility: hidden; }
+.clearfix:before, .clearfix:after {  content: "\0020"; display: block; height: 0; visibility: hidden; } 
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+.clear { clear: both;}
+
+nav { float: right; width: 300px;}
+nav li { float: right; }
+#navName { font-weight: bold; margin-right: 15px; padding-right: 15px; border-right: 1px solid #EBEAE1;}
+h1 { float: left; width: 173px; height: 97px; margin-top: 10px;}
+h1 a { width: 173px; height: 97px; text-indent: -9999em; display: block; background: url(images/logo.jpg) top left no-repeat;}
+h1 a:hover { background: url(images/logo.jpg) bottom left no-repeat; }
+
+h2 { font-size: 145%; padding-bottom: 10px; }
+h3 { font-size: 130%; margin-bottom: 20px;}
+h4 { font-size: 115%; margin-bottom: 10px; line-height: 18px;}
+
+.mainMessTitle { border-bottom: 1px solid #EBEAE1;}
+
+#main { margin-top: 20px;}
+#main a { text-decoration: none; }
+
+#mainSearch { float: left; margin-left: 40px; margin-top: 75px;}
+#mainSearch input { float: left; margin-right: 15px; width: 300px; padding: 5px; color: #9f9a96;}
+
+button { -moz-border-radius: 3px; -webkit-border-radius: 3px; height: 29px; background-color: #e2e1d9; border: 1px solid #dad9d0;}
+
+header { padding-bottom: 10px; padding-top: 10px;}
+
+#container { margin: 0 2%; width: 96%; min-width: 940px;}
+#sidebar { float: left; width: 15%; }
+
+#content { float: left; width: 83%; border-left: 3px solid #88cbd4; border-top: 1px solid #e3e2da; border-bottom: 1px solid #e3e2da;}
+
+table { width: 100%; }
+#mainView td { background-color: #f4f3ec; border-bottom: 1px solid #ebeae1; }
+td { padding: 5px 10px; line-height: 19px;}
+#mainView .read td { background-color: #fcfcfa; }
+#mainView .unread { font-weight: bold;}
+.star { text-indent: -9999em; display: block; background: url(images/bg_stars.png) left top no-repeat; height: 13px; width: 14px; margin-top: 4px;}
+.stared { background: url(images/bg_stars.png) left bottom no-repeat; }
+
+.module { margin-bottom: 50px; }
+
+#pagination { background-color: #D8E9EB; text-align: right; padding-right: 20px;}
+#pagination span { font-weight: bold; margin-right: 5px;}
+#pagination a { margin-left: 15px; text-decoration: underline;}
+
+.filterActive { background-color: #d8e9eb; margin-left: -10px; padding-left: 10px;}
+
+#moduleSearches li { border-bottom: 1px solid #EBEAE1; padding-bottom: 5px; margin-bottom: 5px; margin-right: 20px; line-height: 17px;}
+
+footer { margin: 50px auto; width: 940px;}
+#description { width: 600px; font-size: 95%; line-height: 18px; font-family: Georgia, "Times New Roman", Times, serif; font-style: oblique; color: #5a5855; border-right: 1px solid #EBEAE1; padding-right: 15px; margin-right: 15px; float: left; }
+
+#likeThis { background: url(images/bg_badge.jpg) left top no-repeat; float: left; width: 300px; padding-top: 95px; text-align: center; line-height: 18px;}
+
+#dontateBtn { background: url(images/btn_donate.png) center top no-repeat; height: 54px; text-indent: -9999em; display: block;}
+#dontateBtn:hover { background: url(images/btn_donate.png) center bottom no-repeat; }
+
+.messageContent { padding: 20px; margin-bottom: 20px; border-bottom: 2px solid #D8E9EB;}
+
+#backBar { background-color: #D8E9EB; padding-left: 20px;}
+
+#internalTable { margin-bottom: 20px;}
+.largerCell { width: 60%;}
+#main .originalLink { text-decoration: underline; }
+
+.sender { font-size: 110%; font-weight: bold; margin-right: 15px;}
+.mainSender { width: 25%;}
+.starColumn { width: 2%;}
+.dateColumn { text-align: right; width: 15%;}
+
+.label { font-family: arial, sans-serif; font-size: 80%; margin-right: 10px; font-weight: normal; background-color: #ece9d2; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding: 3px 5px; border: 1px solid #d7c415; color:#d7c415; text-transform:lowercase;}
+
+.messageTitle { float: left; }
+.titleTag { float: right; padding: 1px 5px;}
+
+.online-computer-services {
+    background-color:#dee4f3;
+    color:#6e7898;
+    border-color:#6e7898
+}
+.accident-health-insurance {
+    background-color:#dfebff;
+    color:#5166ff;
+    border-color:#5166ff
+}
+.commercial-banks {
+    background-color:#e1dfff;
+    color:#4b00da;
+    border-color:#4b00da
+}
+.transportation {
+    background-color:#e5d0fc;
+    color:#7615b5;
+    border-color:#7615b5
+}
+.water-utilities {
+    background-color:#ffe6f4;
+    color:#9f5f77;
+    border-color:#9f5f77
+}
+.engineering-architecture-construction-mgmt-svcs {
+    background-color:#ffe1e2;
+    color:#e30005;
+    border-color:#e30005
+}
+.other-single-issue-or-ideological-groups {
+    background-color:#5a6688;
+    color:#c9d1e2;
+    border-color:#c9d1e2
+}
+.fisheries-wildlife {
+    background-color:#4646ff;
+    color:#c2d4ff;
+    border-color:#c2d4ff
+}
+.private-equity-investment-firms {
+    background-color:#4000d3;
+    color:#c1b7fb;
+    border-color:#c1b7fb
+}
+.home-builders {
+    background-color:#6300a8;
+    color:#d1b2ee;
+    border-color:#d1b2ee
+}
+.abortion-policypro-choice {
+    background-color:#8d4761;
+    color:#efcedd;
+    border-color:#efcedd
+}
+.other-non-physician-health-practitioners {
+    background-color:#dc0000;
+    color:#ffbcbf;
+    border-color:#ffbcbf
+}
+.forestry-forest-products {
+    background-color:#fff1df;
+    color:#fa7f00;
+    border-color:#fa7f00
+}
+.accountants {
+    background-color:#fddeae;
+    color:#c47e00;
+    border-color:#c47e00
+}
+.indian-gaming {
+    background-color:#f2ebad;
+    color:#767e43;
+    border-color:#767e43
+}
+.republican-based-groups-but-not-official-party-committees-and-generic-conservative-ones {
+    background-color:#f7ffee;
+    color:#64b13b;
+    border-color:#64b13b
+}
+.alternate-energy-production-services {
+    background-color:#fa6800;
+    color:#ffddba;
+    border-color:#ffddba
+}
+.pro-israel {
+    background-color:#ba6c00;
+    color:#f2cd90;
+    border-color:#f2cd90
+}
+.civil-servantspublic-officials {
+    background-color:#ac9000;
+    color:#e5dd8f;
+    border-color:#e5dd8f
+}
+.hotels-motels {
+    background-color:#5f6728;
+    color:#e4ebb6;
+    border-color:#e4ebb6
+}
+.health-care-services {
+    background-color:#48a20f;
+    color:#ddf3cf;
+    border-color:#ddf3cf
+}
+.other-financial-services {
+    background-color:#006c2e;
+    color:#c7e2ce;
+    border-color:#c7e2ce
+}
+.misc-energy {
+    background-color:#c7e2ce;
+    color:#006c2e;
+    border-color:#006c2e
+}
