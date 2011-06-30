@@ -17,3 +17,4 @@ class EmailEntityIndustry(models.Model):
     entity      = models.ForeignKey(EmailEntity)
     email       = models.ForeignKey(Email)
     thread      = models.ForeignKey(Thread)
+    slug        = models.SlugField(max_length=128)

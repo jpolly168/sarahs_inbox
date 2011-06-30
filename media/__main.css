@@ -53,7 +53,7 @@ table { border-collapse:collapse; border-spacing:0; }
 hr { display:block; height:1px; border:0; border-top:1px solid #ccc; margin:1em 0; padding:0; }
 input, select { vertical-align:middle; }
 
-body { color: #494442; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 22px; font-size: 13px; background: #f8f8f5 url(images/bg.jpg) center top repeat-x;} 
+body { color: #494442; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; line-height: 22px; font-size: 13px; } 
 select, input, textarea, button { font: 99% sans-serif; }
 button.disabled { opacity: 0.3; filter: alpha(opacity=30); -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=30)"; }
 pre, code, kbd, samp { font-family: monospace, sans-serif; }
@@ -109,8 +109,8 @@ nav { float: right; width: 300px;}
 nav li { float: right; }
 #navName { font-weight: bold; margin-right: 15px; padding-right: 15px; border-right: 1px solid #EBEAE1;}
 h1 { float: left; width: 173px; height: 97px; margin-top: 10px;}
-h1 a { width: 173px; height: 97px; text-indent: -9999em; display: block; background: url(images/logo.png) top left no-repeat;}
-h1 a:hover { background: url(images/logo.png) bottom left no-repeat; }
+h1 a { width: 173px; height: 97px; text-indent: -9999em; display: block; background: url(images/logo.jpg) top left no-repeat;}
+h1 a:hover { background: url(images/logo.jpg) bottom left no-repeat; }
 
 h2 { font-size: 145%; padding-bottom: 10px; }
 h3 { font-size: 130%; margin-bottom: 20px;}
@@ -134,8 +134,8 @@ header { padding-bottom: 10px; padding-top: 10px;}
 #content { float: left; width: 83%; border-left: 3px solid #88cbd4; border-top: 1px solid #e3e2da; border-bottom: 1px solid #e3e2da;}
 
 table { width: 100%; }
-#mainView td { background: #f4f3ec url(images/bg_gradient.png) bottom left repeat-x; border-bottom: 1px solid #ebeae1; }
-td { padding: 5px 10px; line-height: 19px; }
+#mainView td { background-color: #f4f3ec; border-bottom: 1px solid #ebeae1; }
+td { padding: 5px 10px; line-height: 19px;}
 #mainView .read td { background-color: #fcfcfa; }
 #mainView .unread { font-weight: bold;}
 .star { text-indent: -9999em; display: block; background: url(images/bg_stars.png) left top no-repeat; height: 13px; width: 14px; margin-top: 4px;}
@@ -154,7 +154,7 @@ td { padding: 5px 10px; line-height: 19px; }
 footer { margin: 50px auto; width: 940px;}
 #description { width: 600px; font-size: 95%; line-height: 18px; font-family: Georgia, "Times New Roman", Times, serif; font-style: oblique; color: #5a5855; border-right: 1px solid #EBEAE1; padding-right: 15px; margin-right: 15px; float: left; }
 
-#likeThis { background: url(images/bg_badge.png) left top no-repeat; float: left; width: 300px; padding-top: 95px; text-align: center; line-height: 18px;}
+#likeThis { background: url(images/bg_badge.jpg) left top no-repeat; float: left; width: 300px; padding-top: 95px; text-align: center; line-height: 18px;}
 
 #dontateBtn { background: url(images/btn_donate.png) center top no-repeat; height: 54px; text-indent: -9999em; display: block;}
 #dontateBtn:hover { background: url(images/btn_donate.png) center bottom no-repeat; }
@@ -172,22 +172,7 @@ footer { margin: 50px auto; width: 940px;}
 .starColumn { width: 2%;}
 .dateColumn { text-align: right; width: 15%;}
 
-.tag { font-family: arial, sans-serif; font-size: 80%; margin-right: 10px; font-weight: normal; background-color: #ece9d2; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding: 3px 5px; border: 1px solid #d7c415;}
-
-.messageTitle { float: left; }
-.titleTag { float: right; padding: 1px 5px;}
-
-.label, li.labelModule ul { font-family: arial, sans-serif; font-size: 80%; margin-right: 10px; font-weight: normal;  text-transform:lowercase;}
-
-.label {background-color: #ece9d2; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding: 2px 3px; border: none; color:#d7c415; display: inline-block;}
-.labelKey {
-    padding:0px;
-    text-indent:-999px;
-    width:10px;
-    height:10px;
-    border-radius:2px;
-    float:right;
-}
+.label { font-family: arial, sans-serif; font-size: 80%; margin-right: 10px; font-weight: normal; background-color: #ece9d2; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding: 2px 3px; border: 1px solid #d7c415; color:#d7c415; text-transform:lowercase; display: inline-block; }
 
 .messageTitle { float: left; }
 .titleTag { float: right; padding: 1px 5px;}

@@ -7,6 +7,7 @@ try:
     import json
 except:
     import simplejson as json
+from django.template.defaultfilters import slugify
 
 def build_industries(entity):
     industry = None
@@ -22,7 +23,8 @@ def build_industries(entity):
                 industry    = i.name, 
                 entity      = entity,
                 email       = entity.mail,
-                thread      = entity.mail.email_thread
+                thread      = entity.mail.email_thread,
+                slug        = slugify(i.name)
             )
 
 def build_table():

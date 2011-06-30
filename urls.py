@@ -18,3 +18,4 @@ if settings.DEBUG:
        
 urlpatterns += patterns('', (r'^', include('mail.urls')))
 urlpatterns += patterns('', (r'^', include('mail_dedupe.urls')))
+urlpatterns += patterns('', (r'^', include('email_entities.urls')))

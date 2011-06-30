@@ -114,8 +114,10 @@ def index(request, search=[], threads=None):
             thread = thread.object
 
         thread.name = _highlight(thread.name, search)
-        thread.industries = EmailEntityIndustry.objects.filter(thread=thread).exclude(industry__icontains="unknown").values().distinct
+        thread.industries = EmailEntityIndustry.objects.filter(thread=thread).exclude(industry__icontains="unknown").only("industry").values("industry").distinct()
         highlighted_threads.append(thread)
+    
+    
             
     template_vars = {
         'range': "<strong>%d</strong> - <strong>%d</strong> of <strong>%d</strong>" % (page.start_index(), page.end_index(), threads_count),
@@ -129,6 +131,7 @@ def index(request, search=[], threads=None):
         'search': " ".join(search), 
         'search_orig': (_search_string(request) is not None) and _search_string(request) or '', 
         'path': request.path,
+        'labels': EmailEntityIndustry.objects.exclude(industry__icontains="unknown").only("industry").values("industry").distinct()
     }
     
     return render_to_response('index.html', template_vars, context_instance=RequestContext(request))
@@ -204,6 +207,16 @@ def thread_by_name(request, thread_name):
         return HttpResponseRedirect(reverse('mail.views.index'))
     
     return thread_by_id(request, thread.id, suppress_redirect=True)
+    
+def threads_by_industry(request, thread_industry):
+    try:
+        threads = Thread.objects.filter(emailentityindustry__slug=thread_industry).distinct()
+    except Thread.DoesNotExist, e:
+        return HttpResponseRedirect(reverse('mail.views.index'))
+    except Thread.MultipleObjectsReturned, e:
+        return HttpResponseRedirect(reverse('mail.views.index'))
+
+    return index(request, threads=threads)
 
     
 def search(request):

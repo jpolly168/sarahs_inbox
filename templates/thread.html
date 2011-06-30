@@ -23,47 +23,58 @@ var starred = GetArrayOfIDs('kagan_star');
     <a href="#">« Back to Inbox</a>
 </div>
 
+
+
+    
+
 {% for email in emails %}
-  
-  <div class="entry_body_top"></div>
-  <div class="entry_body" id="email-{{ email.obj.id }}">
-  	{% if forloop.first %}<script type="text/javascript">document.write((IsMarked(starred, '{{ thread.id }}')) ? '<a href="#" rel="{{ thread.id }}" class="star on"></a>' : '<a href="#" rel="{{ thread.id }}" class="star"></a>');</script>{% endif %}
-    <h1><a href="/thread/{{ thread.id }}/#email-{{ email.obj.id }}" rel="bookmark" title="Permanent Link to '{{ email.obj.subject }}'">{{ email.obj.subject }}</a></h1><span class="entry_date">{{ email.obj.creation_date_time|date:"f A d M Y" }} [ <a target="_blank" href="http://rawdata.sarahsinbox.com/{{ email.obj.source_id }}.pdf">View original</a> ]</span>
-    <table class="addressees">
-
-      {% if email.creator_html %}
-      <tr>
-        <td>from:</td>
-        <td>{{ email.creator_html|safe }}</td>
-      </tr>
-      {% endif %}
-
-      {% if email.to_html %}
-      <tr>
-        <td>to:</td>
-        <td>{{ email.to_html|safe }}</td>
-      </tr>
-      {% endif %}
-      
-      {% if email.cc_html %}
-      <tr>
-        <td>cc:</td>
-        <td>{{ email.cc_html|safe }}</td>
-      </tr>
-      {% endif %}
-      
+  <div class="messageContent" id="email-{{ email.obj.id }}">
+    <div class="mainMessTitle">
+        <h2 class="messageTitle"><a href="/thread/{{ thread.id }}/#email-{{ email.obj.id }}" rel="bookmark" title="Permanent Link to '{{ email.obj.subject }}'">{{ email.obj.subject }}</a></h2>
+        <span class="tag titleTag">Lobbyist</span>
+        <div class="clear"></div>
+    </div>
+  	
+    <table id="internalTable">
+        <tbody>
+            <tr class="read">
+                {% if forloop.first %}<td><script type="text/javascript">document.write((IsMarked(starred, '{{ thread.id }}')) ? '<a href="#" rel="{{ thread.id }}" class="star on">Star</a>' : '<a href="#" rel="{{ thread.id }}" class="star">Star</a>');</script></td>{% endif %}
+                <td class="largerCell">
+                    <span class="sender">{% if email.creator_html %}{{ email.creator_html|safe }}{% endif %}</span>
+                    {% if email.to_html %}
+					<span>
+                        to
+                        <span>{{ email.to_html|safe }}</span>
+                    </span>
+					{% endif %}
+					{% if email.cc_html %}
+					<span>
+                        cc:
+                        <span>{{ email.cc_html|safe }}</span>
+                    </span>
+					{% endif %}
+                </td>
+                <td>{{ email.obj.creation_date_time|date:"f A d M Y" }}</td>
+                <td><a class="originalLink" href="http://rawdata.sarahsinbox.com/{{ email.obj.source_id }}.pdf">View Original</a></td>
+            </tr>
+        </tbody>
     </table>
-    <pre>
+
+
+    <div>
       {{ email.obj.text|safe }}
-    </pre>
+	</div>
+	
+	<label class="attachment-label">Attachment</label>
+      <div class="attachment">{{ email.obj.attachment|safe }}</div>
+</div>
+</div>
+<div class="clear"></div>
     
     {% if email.obj.attachment %}
-      <label class="attachment-label">Attachment</label>
-      <div class="attachment">{{ email.obj.attachment|safe }}</div>
+      
     {% endif %}
   </div>
-  <div class="entry_body_bottom"></div>
-
 {% endfor %}
 
 <script type="text/javascript">

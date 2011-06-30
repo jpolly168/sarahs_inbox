@@ -17,7 +17,14 @@
       {% csrf_token %}
       <input type="hidden" name="kagan_star" id="kagan_star"/>
   </form>
-  </li>        
+  </li>
+	<li class="labelModule"><span class="labelLabel">Labels</span>
+		<ul>
+			{% for label in labels %}
+				<li><a href="/label/{{label.industry|slugify}}">{{label.industry}}<span class="label labelKey {{label.industry|slugify}}">Key</span></a></li>
+			{% endfor %}
+		</ul>
+	</li>
 </ul>
 {% endblock %}
 
@@ -92,6 +99,15 @@ $(function(){
 
     return false;
   });
+	$(".labelModule ul").hide();
+	$(".labelLabel").toggle(
+		function() {
+			$(".labelModule ul").slideDown();
+		},
+		function() {
+			$(".labelModule ul").slideUp();
+		}
+	);
 });
 </script>
 {% endblock %}
