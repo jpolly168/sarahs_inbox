@@ -105,6 +105,15 @@ a:link { -webkit-tap-highlight-color: #CA5703; }
 .clearfix { zoom: 1; }
 .clear { clear: both;}
 
+pre {
+    /* this will make preformatting the email text work without breaking the layout. */
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
 nav { float: right; width: 300px;}
 nav li { float: right; }
 #navName { font-weight: bold; margin-right: 15px; padding-right: 15px; border-right: 1px solid #EBEAE1;}
@@ -180,6 +189,19 @@ footer { margin: 50px auto; width: 940px;}
 .label, li.labelModule ul { font-family: arial, sans-serif; font-size: 80%; margin-right: 10px; font-weight: normal;  text-transform:lowercase;}
 
 .label {background-color: #ece9d2; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding: 2px 3px; border: none; color:#d7c415; display: inline-block;}
+
+.entityHighlight {
+    background:yellow;
+}
+.entityPopup {
+    display:none;
+    position:absolute;
+    height:auto;
+    width:200px;
+    background:white;
+    box-shadow:5px 5px 5px #333;
+}
+
 .labelKey {
     padding:0px;
     text-indent:-999px;

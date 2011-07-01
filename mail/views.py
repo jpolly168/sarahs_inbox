@@ -1,3 +1,4 @@
+from django.template.loader import render_to_string
 from django.shortcuts import render_to_response, get_object_or_404
 from django.template import RequestContext
 from django.core.paginator import Paginator
@@ -12,6 +13,7 @@ from django.core.cache import cache
 import re
 import json
 from django.template.defaultfilters import slugify
+from django.utils.html import escape
 
 
 RESULTS_PER_PAGE = 50
@@ -75,22 +77,40 @@ def _prepare_ids_from_cookie(request, cookie_name, method=None):
     
     
 def _annotate_emails(emails, search=[]):
-    r = []
-    emails = _create_entity_links(emails)
-    for email in emails:
+    entity_meta = _create_entity_links(emails)
+    r = {
+        'emails' : [],
+        'popups' : entity_meta['popups']
+    }
+    for email in entity_meta['emails']:
         email.text = _highlight(email.text, search)
-        r.append({ 'creator_html': email.creator_html(), 'to_html': email.to_html(), 'cc_html': email.cc_html(), 'obj': email })
+        r['emails'].append({ 'creator_html': email.creator_html(), 'to_html': email.to_html(), 'cc_html': email.cc_html(), 'obj': email })
     return r
 
 def _create_entity_links(emails):
+    entity_meta = {
+        'popups': []
+    }
+    entities = EmailEntity.objects.filter(mail__in=emails)
     for email in emails:
-        entities = EmailEntity.objects.filter(mail=email)
-        for entity in entities:
+        this_mail_entities = entities.filter(mail=email)
+        email.text = escape(email.text)
+        for entity in this_mail_entities:
             ref_array = json.loads(entity.references)
             for r in ref_array:
-                link = '<a href="http://influenceexplorer.com/%s/%s/%s">%s</a>' % (entity.entity_type, slugify(entity.entity_name),entity.entity,r)
+                link = '<span class="entityHighlight" data-entity="%s">%s</span>'%(entity.entity, r)
                 email.text = email.text.replace(r, link)
-    return emails
+    for entity in entities.distinct():
+        popup_vars = {
+            "name": entity.entity_name,
+            "type": entity.entity_type,
+            "slug": slugify(entity.entity_name),
+            "id"  : entity.entity,
+            "industries": EmailEntityIndustry.objects.filter(entity = entity).only("industry")
+        }
+        entity_meta['popups'].append(render_to_string('entity_wrap.html', popup_vars))
+    entity_meta['emails'] = emails
+    return entity_meta
 
 def index(request, search=[], threads=None):
     
@@ -109,12 +129,17 @@ def index(request, search=[], threads=None):
     page = p.page(page_num)
 
     highlighted_threads = []
+    
+    industries = EmailEntityIndustry.objects.select_related().exclude(industry__icontains="unknown").only("industry","thread").all()    
+    
+    len(page.object_list)
     for thread in page.object_list:
         if (threads is not None) and type(threads) is SearchQuerySet: # deal with searchqueryset objects
             thread = thread.object
 
         thread.name = _highlight(thread.name, search)
-        thread.industries = EmailEntityIndustry.objects.filter(thread=thread).exclude(industry__icontains="unknown").only("industry").values("industry").distinct()
+        thread.industries = industries.filter(thread=thread).values("industry").distinct()
+        #EmailEntityIndustry.objects.exclude(industry__icontains="unknown").only("industry").filter(thread=thread).values_list("industry").distinct()
         highlighted_threads.append(thread)
     
     
@@ -131,7 +156,8 @@ def index(request, search=[], threads=None):
         'search': " ".join(search), 
         'search_orig': (_search_string(request) is not None) and _search_string(request) or '', 
         'path': request.path,
-        'labels': EmailEntityIndustry.objects.exclude(industry__icontains="unknown").only("industry").values("industry").distinct()
+        'labels': industries.values("industry").distinct()
+        #EmailEntityIndustry.objects.exclude(industry__icontains="unknown").only("industry","thread").values_list("industry").distinct()
     }
     
     return render_to_response('index.html', template_vars, context_instance=RequestContext(request))
@@ -196,7 +222,7 @@ def thread_by_id(request, thread_id, suppress_redirect=False):
     thread_starred = thread.id in _prepare_ids_from_cookie(request, 'kagan_star')
     emails = _annotate_emails(Email.objects.filter(email_thread=thread).order_by('creation_date_time'), search)    
 
-    return render_to_response('thread.html', {'thread': thread, 'thread_starred': thread_starred, 'emails': emails }, context_instance=RequestContext(request))
+    return render_to_response('thread.html', {'thread': thread, 'thread_starred': thread_starred, 'emails': emails['emails'], 'popups':emails['popups']  }, context_instance=RequestContext(request))
 
 def thread_by_name(request, thread_name):
     try:

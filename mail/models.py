@@ -83,6 +83,21 @@ class Thread(models.Model):
         verbose_name = "Email Thread"
         ordering = ['name']
     
+    def all_recipient_html_processor(self):
+        #so instead of doing this a million times, we're going to do it once!
+        recipients = {}
+        emails = Email.objects.filter(email_thread=self)
+        for e in emails:
+            for recipient_type in ('to', 'cc'):                
+                e_recipients = e.recipient_list(recipient_type)
+                for er in e_recipients:
+                    recipients[er[1]] = er
+        sorted_recipients = sorted(recipients.items(), key=lambda x: x[1][1].upper())
+        html_pieces =  map(lambda x: x[1][2], sorted_recipients)
+        if len(html_pieces)>8:
+            return html_pieces[0] + ' .. ' + Email.NAME_SEPARATOR.join(html_pieces[-6:])
+        self.all_recipient_html = Email.NAME_SEPARATOR.join(html_pieces)
+    
     def save(self):
         # do some stat-calculation prior to save
         emails = Email.objects.filter(email_thread=self).order_by('creation_date_time')
@@ -109,23 +124,9 @@ class Thread(models.Model):
         self.count = emails.count()
 
         self.slug = slugify_unique(Thread, self.name)
-
         super(Thread, self).save()
-
-    
-    def all_recipient_html(self):
-        recipients = {}
-        emails = Email.objects.filter(email_thread=self)
-        for e in emails:
-            for recipient_type in ('to', 'cc'):                
-                e_recipients = e.recipient_list(recipient_type)
-                for er in e_recipients:
-                    recipients[er[1]] = er
-        sorted_recipients = sorted(recipients.items(), key=lambda x: x[1][1].upper())
-        html_pieces =  map(lambda x: x[1][2], sorted_recipients)
-        if len(html_pieces)>8:
-            return html_pieces[0] + ' .. ' + Email.NAME_SEPARATOR.join(html_pieces[-6:])
-        return Email.NAME_SEPARATOR.join(html_pieces)
+        self.all_recipient_html_processor()
+        super(Thread, self).save()
     
     name = models.CharField("Name", max_length=255)
     date = models.DateTimeField("Date")
@@ -135,7 +136,8 @@ class Thread(models.Model):
     min_interval = models.DecimalField("Minimum Interval", max_digits=10, decimal_places=3, blank=True, null=True)
     star_count = models.IntegerField('Star Count', default=0)
     creator = models.ForeignKey(Person, blank=True, null=True, default=None)
-    
+    all_recipient_html = models.TextField(null=True)
+
     slug = models.SlugField("Slug", default='', blank=True)
     
     merged_into = models.ForeignKey('Thread', null=True, blank=True, default=None)
