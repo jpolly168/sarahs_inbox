@@ -137,8 +137,7 @@ def index(request, search=[], threads=None):
     for thread in page.object_list:
         if (threads is not None) and type(threads) is SearchQuerySet: # deal with searchqueryset objects
             thread = thread.object
-
-        thread.name = _highlight(thread.name, search)
+            thread.name = _highlight(thread.name, search)
         thread.industries = industries.filter(thread=thread).values("industry").distinct()
         #EmailEntityIndustry.objects.exclude(industry__icontains="unknown").only("industry").filter(thread=thread).values_list("industry").distinct()
         highlighted_threads.append(thread)
