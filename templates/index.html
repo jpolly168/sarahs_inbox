@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load media %}
+{% load inbox_extras %}
 
 {% block page_title %}{% if path == '/starred/all/' %}All Starred Threads | Sarah's Inbox{% endif %}{% if path == '/starred/' %}Your Starred Threads | Sarah's Inbox{% endif %}{% if path == '/' %}Sarah's Inbox | A Project of the Sunlight Foundation{% endif %}{% if search %}Search results for: {{ search }} | Sarah's Inbox{% endif %}{% endblock %}
 
@@ -21,7 +22,7 @@
 	<li class="labelModule"><span class="labelLabel">Labels</span>
 		<ul>
 			{% for label in labels %}
-				<li><a href="/label/{{label.industry|slugify}}">{{label.industry}}<span class="label labelKey {{label.industry|slugify}}">Key</span></a></li>
+				<li><a href="/label/{{label.industry|slugify}}">{{label.industry|industry_name}}<span class="label labelKey {{label.industry|slugify}}">Key</span></a></li>
 			{% endfor %}
 		</ul>
 	</li>
@@ -51,7 +52,7 @@ var starred = GetArrayOfIDs('kagan_star');
           <td class="mainSender"><a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{% if thread.creator.is_kagan %}To: {% endif %}{{ thread.all_recipient_html|safe|striptags }}{% if thread.count > 1 %} ({{ thread.count}}){% endif %}</a></td>
           <td class="subject">
 			{% for industry in thread.industries %}
-			<span class="label {{industry.industry|slugify}}">{{industry.industry}}</span>
+			<span class="label {{industry.industry|slugify}}">{{industry.industry|industry_name}}</span>
 			{% endfor %}<a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{% if thread.name %}{{ thread.name|safe }}{% else %}(No subject){% endif %}</a></td>
           <td class="dateColumn"><a href="/thread/{{ thread.slug }}/{% if search %}?q={{ search_orig }}{% endif %}">{{ thread.date|date:"SHORT_DATE_FORMAT" }}</a></td>
         </tr>

@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load inbox_extras %}
 
 {% block page_title %}{{ thread.name }} | Sarah's Inbox{% endblock %}
 
@@ -14,7 +15,7 @@
 	<li class="labelModule"><span class="labelLabel">Labels</span>
 		<ul>
 			{% for label in labels %}
-				<li><a href="/label/{{label.industry|slugify}}">{{label.industry}}<span class="label labelKey {{label.industry|slugify}}">Key</span></a></li>
+				<li><a href="/label/{{label.industry|slugify}}">{{label.industry|industry_name}}<span class="label labelKey {{label.industry|slugify}}">Key</span></a></li>
 			{% endfor %}
 		</ul>
 	</li>
@@ -39,7 +40,7 @@ var starred = GetArrayOfIDs('kagan_star');
   <div class="messageContent" id="email-{{ email.obj.id }}">
     <div class="mainMessTitle">
         <h2 class="messageTitle"><a href="/thread/{{ thread.id }}/#email-{{ email.obj.id }}" rel="bookmark" title="Permanent Link to '{{ email.obj.subject }}'">{{ email.obj.subject }}</a></h2>
-        {% for industry in industries %}<span class="label {{industry.industry|slugify}}">{{industry.industry}}</span>{% endfor %}
+        {% for industry in industries %}<span class="label {{industry.industry|slugify}}">{{industry.industry|industry_name}}</span>{% endfor %}
         <div class="clear"></div>
     </div>
   	
