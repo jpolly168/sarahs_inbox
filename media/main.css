@@ -186,9 +186,9 @@ footer { margin: 50px auto; width: 940px;}
 .messageTitle { float: left; }
 .titleTag { float: right; padding: 1px 5px;}
 
-.label, li.labelModule ul { font-family: arial, sans-serif; font-size: 80%; margin-right: 10px; font-weight: normal;  text-transform:lowercase;}
+.label, li.labelModule ul { font-family: arial, sans-serif; font-size: 75%; margin-right: 10px; font-weight: normal;  text-transform:lowercase;}
 
-.label {background-color: #ece9d2; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding: 2px 3px; border: 1px solid #d7c415; color:#d7c415; display: inline-block; margin-top: 5px;}
+.label {background-color: #ece9d2; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding: 0px 1px; border: 1px solid #d7c415; color:#d7c415; display: inline-block; margin-top: 5px;}
 
 .mainMessTitle .label { float: right; margin-top: -3px; }
 
@@ -614,5 +614,16 @@ footer { margin: 50px auto; width: 940px;}
 }
 
 .d {
+    
+}
+
+.l {
+    
+}
+
+.i {
+    
+}
+.3 {
     
 }

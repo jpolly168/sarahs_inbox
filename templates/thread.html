@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block page_title %}{{ thread.name }} | Elena's Inbox{% endblock %}
+{% block page_title %}{{ thread.name }} | Sarah's Inbox{% endblock %}
 
 {% block navigation %}
 <ul>
@@ -9,7 +9,15 @@
   <li class="disabled">Drafts</li>
   <li class="disabled">All Mail</li>
   <li><a href="/starred/all/">Starred (all)</a></li>
-  <li><a href="/starred/">Starred (by you)</a></li>        
+  <li><a href="/starred/">Starred (by you)</a></li>
+  </li>
+	<li class="labelModule"><span class="labelLabel">Labels</span>
+		<ul>
+			{% for label in labels %}
+				<li><a href="/label/{{label.industry|slugify}}">{{label.industry}}<span class="label labelKey {{label.industry|slugify}}">Key</span></a></li>
+			{% endfor %}
+		</ul>
+	</li>
 </ul>
 {% endblock %}
 

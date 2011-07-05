@@ -92,7 +92,7 @@ def _create_entity_links(emails):
     entity_meta = {
         'popups': []
     }
-    entities = EmailEntity.objects.filter(mail__in=emails)
+    entities = EmailEntity.objects.filter(mail__in=emails).exclude(entity_name__icontains="Sarah Palin")
     for email in emails:
         this_mail_entities = entities.filter(mail=email)
         email.text = escape(email.text)
@@ -210,7 +210,9 @@ def thread_by_id(request, thread_id, suppress_redirect=False):
         thread = Thread.objects.get(id=thread_id)
     except Thread.DoesNotExist, e:
         return HttpResponseRedirect(reverse('mail.views.index'))
-
+    
+    industries = EmailEntityIndustry.objects.select_related().exclude(industry__icontains="unknown").only("industry","thread").all()  
+    
     # if merged thread, redirect
     if thread.merged_into is not None:
         return HttpResponseRedirect('/thread/%d/' % thread.merged_into.id)
@@ -222,9 +224,9 @@ def thread_by_id(request, thread_id, suppress_redirect=False):
     search = _search_tokens(request)
     thread_starred = thread.id in _prepare_ids_from_cookie(request, 'kagan_star')
     emails = _annotate_emails(Email.objects.filter(email_thread=thread).order_by('creation_date_time'), search)
-    industries = EmailEntityIndustry.objects.filter(thread=thread).exclude(industry__icontains="unknown").values('industry').distinct()    
+    this_thread_industries = industries.filter(thread=thread).exclude(industry__icontains="unknown").values('industry').distinct()  
 
-    return render_to_response('thread.html', {'thread': thread, 'thread_starred': thread_starred, 'emails': emails['emails'], 'popups':emails['popups'], 'industries':industries  }, context_instance=RequestContext(request))
+    return render_to_response('thread.html', {'thread': thread, 'thread_starred': thread_starred, 'emails': emails['emails'], 'popups':emails['popups'], 'industries':this_thread_industries, 'labels': industries.values("industry").distinct() }, context_instance=RequestContext(request))
 
 def thread_by_name(request, thread_name):
     try:
