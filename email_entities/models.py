@@ -10,7 +10,6 @@ class EmailEntity(models.Model):
     entity_name     = models.CharField(max_length=256)
     entity_type     = models.CharField(max_length=128)
     references      = models.TextField()
-    party           = models.CharField(max_length=128)
 
 class EmailEntityIndustry(models.Model):
     industry    = models.CharField(max_length=128)

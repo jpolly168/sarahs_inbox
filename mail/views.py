@@ -14,6 +14,7 @@ import re
 import json
 from django.template.defaultfilters import slugify
 from django.utils.html import escape
+from itertools import chain
 
 
 RESULTS_PER_PAGE = 50
@@ -220,9 +221,10 @@ def thread_by_id(request, thread_id, suppress_redirect=False):
 
     search = _search_tokens(request)
     thread_starred = thread.id in _prepare_ids_from_cookie(request, 'kagan_star')
-    emails = _annotate_emails(Email.objects.filter(email_thread=thread).order_by('creation_date_time'), search)    
+    emails = _annotate_emails(Email.objects.filter(email_thread=thread).order_by('creation_date_time'), search)
+    industries = EmailEntityIndustry.objects.filter(thread=thread).exclude(industry__icontains="unknown").values('industry').distinct()    
 
-    return render_to_response('thread.html', {'thread': thread, 'thread_starred': thread_starred, 'emails': emails['emails'], 'popups':emails['popups']  }, context_instance=RequestContext(request))
+    return render_to_response('thread.html', {'thread': thread, 'thread_starred': thread_starred, 'emails': emails['emails'], 'popups':emails['popups'], 'industries':industries  }, context_instance=RequestContext(request))
 
 def thread_by_name(request, thread_name):
     try:

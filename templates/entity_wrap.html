@@ -1,7 +1,8 @@
 <div class="entityPopup" id="{{id}}">
 	<h2>{{name}}</h2>
 	{% for industry in industries %}
-		{{ industry.industry }}
+		<span class="{{industry.industry|slugify}}">{{ industry.industry }}</span>
 	{% endfor %}
+	<br />
 	<a href="http://influenceexplorer.com/{{type}}/{{slug}}/{{id}}">See {{name}} in Influence Explorer &rarr;</a>
 </div>

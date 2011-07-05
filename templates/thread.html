@@ -31,7 +31,7 @@ var starred = GetArrayOfIDs('kagan_star');
   <div class="messageContent" id="email-{{ email.obj.id }}">
     <div class="mainMessTitle">
         <h2 class="messageTitle"><a href="/thread/{{ thread.id }}/#email-{{ email.obj.id }}" rel="bookmark" title="Permanent Link to '{{ email.obj.subject }}'">{{ email.obj.subject }}</a></h2>
-        <span class="tag titleTag">Lobbyist</span>
+        {% for industry in industries %}<span class="label {{industry.industry|slugify}}">{{industry.industry}}</span>{% endfor %}
         <div class="clear"></div>
     </div>
   	
@@ -104,9 +104,19 @@ $(function(){
 		},
 		function() {
 			popup = $("#"+$(this).attr("data-entity"));
-			popup.hide()
+			window.popupTime = window.setTimeout('popup.hide()',200);
 		}
-		)
+	);
+	$('.entityPopup').hover(
+		function() {
+			window.clearTimeout(window.popupTime);
+			$(this).show();
+		},
+		function() {
+			popup = $(this)
+			window.setTimeout('popup.hide()',150);
+		}
+	);
 });
 </script>
 

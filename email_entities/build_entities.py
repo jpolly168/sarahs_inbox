@@ -16,15 +16,21 @@ def build_industries(entity):
         industry = Entity.objects.filter( industry_entity__entity__organization_metadata__entity__id=entity.entity)
     elif entity.entity_type == u'individual':
         industry = Entity.objects.raw("select id, name from matchbox_entity where matchbox_entity.id in (select distinct industry_entity_id from matchbox_indivorgaffiliations indiv inner join matchbox_organizationmetadata org on indiv.organization_entity_id = org.entity_id where indiv.individual_entity_id = %s)", [entity.entity])
+    elif entity.entity_type == u'politician':
+        industry = PoliticianMetadataLatest.objects.get(entity__id = entity.entity).party
 
     if industry is not None:
         for i in industry:
+            try:
+                str = i.name
+            except:
+                str = i
             EmailEntityIndustry.objects.create(
-                industry    = i.name, 
+                industry    = str, 
                 entity      = entity,
                 email       = entity.mail,
                 thread      = entity.mail.email_thread,
-                slug        = slugify(i.name)
+                slug        = slugify(str)
             )
 
 def build_table():
@@ -44,18 +50,12 @@ def build_table():
             #since match() returns a list of references, store it as a JSON-formatted string
             r = json.dumps(map(unicode, value))
         
-            party = ""
-
-            if e.type == u'politician':
-                party = PoliticianMetadataLatest.objects.get(entity = e).party
-            
             ee = EmailEntity.objects.create(
                 mail            = email,
                 entity          = e.id,
                 entity_name     = e.name,
                 entity_type     = e.type,
                 references      = r,
-                party           = party
             )
             
             build_industries(ee)
