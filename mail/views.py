@@ -8,6 +8,7 @@ from haystack.query import SearchQuerySet
 from mail.models import *
 from email_entities.models import *
 from django.db.models import Q
+from django.db.models import Count
 from django.core.urlresolvers import reverse
 from django.core.cache import cache
 import re
@@ -98,10 +99,15 @@ def _create_entity_links(emails):
         email.text = escape(email.text)
         for entity in this_mail_entities:
             ref_array = json.loads(entity.references)
+            try:
+                industry = EmailEntityIndustry.objects.filter(entity = entity).values('industry').annotate(most_used = Count('id')).order_by('-most_used')[0]['industry']
+            except:
+                industry = ""
+            
             for r in ref_array:
-                link = '<span class="entityHighlight" data-entity="%s">%s</span>'%(entity.entity, r)
+                link = '<a class="entityHighlight %s" href="http://influenceexplorer.com/%s/%s/%s">%s</a>' % ( slugify(industry), entity.entity_type, slugify(entity.entity_name), entity.entity, r)
                 email.text = email.text.replace(r, link)
-    for entity in entities.distinct():
+    """for entity in entities.distinct():
         popup_vars = {
             "name": entity.entity_name,
             "type": entity.entity_type,
@@ -109,7 +115,7 @@ def _create_entity_links(emails):
             "id"  : entity.entity,
             "industries": EmailEntityIndustry.objects.filter(entity = entity).only("industry")
         }
-        entity_meta['popups'].append(render_to_string('entity_wrap.html', popup_vars))
+        entity_meta['popups'].append(render_to_string('entity_wrap.html', popup_vars))"""
     entity_meta['emails'] = emails
     return entity_meta
 
@@ -138,7 +144,7 @@ def index(request, search=[], threads=None):
         if (threads is not None) and type(threads) is SearchQuerySet: # deal with searchqueryset objects
             thread = thread.object
             thread.name = _highlight(thread.name, search)
-        thread.industries = industries.filter(thread=thread).values("industry").distinct()
+        thread.industries = industries.filter(thread=thread).values("industry").distinct().annotate(most_used = Count('id')).order_by('-most_used')
         #EmailEntityIndustry.objects.exclude(industry__icontains="unknown").only("industry").filter(thread=thread).values_list("industry").distinct()
         highlighted_threads.append(thread)
     
@@ -156,15 +162,15 @@ def index(request, search=[], threads=None):
         'search': " ".join(search), 
         'search_orig': (_search_string(request) is not None) and _search_string(request) or '', 
         'path': request.path,
-        'labels': industries.values("industry").distinct()
+        'labels': industries.values("industry").distinct().annotate(most_used = Count('id')).order_by('-most_used')
         #EmailEntityIndustry.objects.exclude(industry__icontains="unknown").only("industry","thread").values_list("industry").distinct()
     }
     
     return render_to_response('index.html', template_vars, context_instance=RequestContext(request))
 
 def sent(request):
-    kagan = Person.objects.elena_kagan()
-    emails = Thread.objects.filter(creator=kagan).order_by('-date')
+    palin = Person.objects.sarah_palin()
+    emails = Thread.objects.filter(creator__in=palin).order_by('-date')
     return index(request, threads=emails)
 
 def contact_by_id(request, contact_id, suppress_redirect=False):
