@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load inbox_extras %}
 
-{% block page_title %}{{ thread.name }} | Sarah's Inbox{% endblock %}
+{% block page_title %}{{ thread.name }} | Sarah's Inbox {% endblock %}
 
 {% block navigation %}
 <ul>
@@ -99,27 +99,15 @@ $(function(){
     return false;
   });
 
-	$('.entityHighlight').hover(
+  $(".labelModule ul").hide();
+  $(".labelLabel").toggle(
 		function() {
-			popup = $("#"+$(this).attr("data-entity"));
-			pos = $(this).offset();
-			popup.show().css({'left':pos.left, 'top':(pos.top+20), 'display':'block'});
+			$(".labelModule ul").slideDown();
 		},
 		function() {
-			popup = $("#"+$(this).attr("data-entity"));
-			window.popupTime = window.setTimeout('popup.hide()',200);
+			$(".labelModule ul").slideUp();
 		}
-	);
-	$('.entityPopup').hover(
-		function() {
-			window.clearTimeout(window.popupTime);
-			$(this).show();
-		},
-		function() {
-			popup = $(this)
-			window.setTimeout('popup.hide()',150);
-		}
-	);
+  );
 });
 </script>
 
