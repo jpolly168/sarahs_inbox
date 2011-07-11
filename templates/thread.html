@@ -12,13 +12,7 @@
   <li><a href="/starred/all/">Starred (all)</a></li>
   <li><a href="/starred/">Starred (by you)</a></li>
   </li>
-	<li class="labelModule"><span class="labelLabel">Labels</span>
-		<ul>
-			{% for label in labels %}
-				<li><a href="/label/{{label.industry|slugify}}">{{label.industry|industry_name}}<span class="label labelKey {{label.industry|slugify}}">Key</span></a></li>
-			{% endfor %}
-		</ul>
-	</li>
+	{% include "label_nav.html" %}
 </ul>
 {% endblock %}
 
@@ -29,7 +23,7 @@ var starred = GetArrayOfIDs('kagan_star');
 </script>
 
 <div id="backBar">
-    <a href="#">« Back to Inbox</a>
+    <a href="javascript:window.history.go(-1)">« Back to Inbox</a>
 </div>
 
 

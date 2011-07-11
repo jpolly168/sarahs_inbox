@@ -19,13 +19,7 @@
       <input type="hidden" name="kagan_star" id="kagan_star"/>
   </form>
   </li>
-	<li class="labelModule"><span class="labelLabel">Labels</span>
-		<ul>
-			{% for label in labels %}
-				<li><a href="/label/{{label.industry|slugify}}">{{label.industry|industry_name}}<span class="label labelKey {{label.industry|slugify}}">Key</span></a></li>
-			{% endfor %}
-		</ul>
-	</li>
+	{% include "label_nav.html" %}
 </ul>
 {% endblock %}
 

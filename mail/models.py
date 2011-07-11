@@ -42,7 +42,7 @@ class PersonManager(models.Manager):
         return Person.objects.get(id=KAGAN_ID)
 
     def sarah_palin(self):
-        return Person.objects.filter(name__icontains='Governor Sarah Palin')
+        return Person.objects.filter(name__icontains='Sarah Palin')
 
 class Person(models.Model):
     """ A sender or recipient of emails """

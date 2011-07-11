@@ -137,14 +137,14 @@ def index(request, search=[], threads=None):
 
     highlighted_threads = []
     
-    industries = EmailEntityIndustry.objects.select_related().exclude(industry__icontains="unknown").only("industry","thread").all()    
+    industries = EmailEntityIndustry.objects.select_related().exclude(industry__icontains="unknown").only("industry","thread").all()
     
     len(page.object_list)
     for thread in page.object_list:
         if (threads is not None) and type(threads) is SearchQuerySet: # deal with searchqueryset objects
             thread = thread.object
             thread.name = _highlight(thread.name, search)
-        thread.industries = industries.filter(thread=thread).values("industry").distinct().annotate(most_used = Count('id')).order_by('-most_used')
+        thread.industries = industries.filter(thread=thread).values("industry").exclude(industry__in=["R","D","I","3","N"]).distinct().annotate(most_used = Count('id')).order_by('-most_used')[0:3]
         #EmailEntityIndustry.objects.exclude(industry__icontains="unknown").only("industry").filter(thread=thread).values_list("industry").distinct()
         highlighted_threads.append(thread)
     

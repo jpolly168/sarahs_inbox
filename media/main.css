@@ -64,8 +64,10 @@ html { overflow-y: scroll; }
 iframe { display: block; margin: 10px 0; }
 
 a:hover, a:active { outline: none; }
+
 a, a:active, a:visited { color: #2f4867; }
 a:hover { color: #15283f; }
+.messageContent a:hover {color: #608099}
 
 nav ul, nav li { margin: 0; } 
 small { font-size: 85%; }
@@ -186,7 +188,7 @@ footer { margin: 50px auto; width: 940px;}
 .messageTitle { float: left; }
 .titleTag { float: right; padding: 1px 5px;}
 
-.label, li.labelModule ul { font-family: arial, sans-serif; font-size: 75%; margin-right: 10px; font-weight: normal;  text-transform:lowercase;}
+.label, li.labelList { font-family: arial, sans-serif; font-size: 75%; margin-right: 10px; font-weight: normal;  text-transform:lowercase;}
 
 .label {background-color: #ece9d2; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding: 0px 1px; border: 1px solid #d7c415; color:#d7c415; display: inline-block; margin-top: 5px;}
 
@@ -218,412 +220,448 @@ footer { margin: 50px auto; width: 940px;}
 .messageTitle { float: left; }
 .titleTag { float: right; padding: 1px 5px;}
 
-.online-computer-services {
-    background-color:#dee4f3;
-    color:#6e7898;
-    border-color:#6e7898
-}
-.accident-health-insurance {
-    background-color:#dfebff;
-    color:#5166ff;
-    border-color:#5166ff
-}
-.commercial-banks {
-    background-color:#e1dfff;
-    color:#4b00da;
-    border-color:#4b00da
-}
-.transportation {
-    background-color:#e5d0fc;
-    color:#7615b5;
-    border-color:#7615b5
-}
-.water-utilities {
-    background-color:#ffe6f4;
-    color:#9f5f77;
-    border-color:#9f5f77
-}
-.engineering-architecture-construction-mgmt-svcs {
-    background-color:#ffe1e2;
-    color:#e30005;
-    border-color:#e30005
-}
-.other-single-issue-or-ideological-groups {
+.r, .r a {
     background-color:#046380;
     color:#ffffff;
     border-color:#ffffff
 }
-.fisheries-wildlife {
+.d, .d a {
     background-color:#002f2f;
     color:#ffffff;
     border-color:#ffffff
 }
-.private-equity-investment-firms {
+.civil-servantspublic-officials, .civil-servantspublic-officials a {
     background-color:#382513;
     color:#ffffff;
     border-color:#ffffff
 }
-.home-builders {
+.oil-gas, .oil-gas a {
     background-color:#8e2800;
     color:#ffffff;
     border-color:#ffffff
 }
-.abortion-policypro-choice {
+.telephone-utilities, .telephone-utilities a {
     background-color:#468966;
     color:#ffffff;
     border-color:#ffffff
 }
-.other-non-physician-health-practitioners {
+.education, .education a {
     background-color:#d8caa8;
     color:#382513;
     border-color:#382513
 }
-.forestry-forest-products {
+.i, .i a {
     background-color:#836527;
     color:#ffffff;
     border-color:#ffffff
 }
-.accountants {
+.employer-listedcategory-unknown, .employer-listedcategory-unknown a {
     background-color:#aa835a;
     color:#ffffff;
     border-color:#ffffff
 }
-.indian-gaming {
+.telecom-services-equipment, .telecom-services-equipment a {
     background-color:#055995;
     color:#ffffff;
     border-color:#ffffff
 }
-.republican-based-groups-but-not-official-party-committees-and-generic-conservative-ones {
+.air-transport, .air-transport a {
     background-color:#7a8ec3;
     color:#ffffff;
     border-color:#ffffff
 }
-.alternate-energy-production-services {
+.insurance, .insurance a {
     background-color:#097dc8;
     color:#ffffff;
     border-color:#ffffff
 }
-.pro-israel {
+.lawyerslaw-firms, .lawyerslaw-firms a {
     background-color:#042842;
     color:#ffffff;
     border-color:#ffffff
 }
-.civil-servantspublic-officials {
+.computersinternet, .computersinternet a {
     background-color:#c7a79a;
     color:#383839;
     border-color:#383839
 }
-.hotels-motels {
+.tvmoviesmusic, .tvmoviesmusic a {
     background-color:#fde9f2;
     color:#383839;
     border-color:#383839
 }
-.health-care-services {
+.lobbyists, .lobbyists a {
     background-color:#e4c6ce;
     color:#383839;
     border-color:#383839
 }
-.other-financial-services {
+.other, .other a {
     background-color:#a89d8b;
     color:#ffffff;
     border-color:#ffffff
 }
-.misc-energy {
+.n, .n a {
     background-color:#695a5f;
     color:#ffffff;
     border-color:#ffffff
 }
-.entertainment-industrybroadcast-motion-pictures {
+.retail-sales, .retail-sales a {
     background-color:#383839;
     color:#ffffff;
     border-color:#ffffff
 }
-.venture-capital {
+.unknown, .unknown a {
     background-color:#7c92b7;
     color:#ffffff;
     border-color:#ffffff
 }
-.misc-business {
+.non-profit-institutions, .non-profit-institutions a {
     background-color:#968b93;
     color:#ffffff;
     border-color:#ffffff
 }
-.public-school-teachers-administrators-officials {
+.waste-management, .waste-management a {
     background-color:#a78353;
     color:#ffffff;
     border-color:#ffffff
 }
-.electric-utilities {
+.environment, .environment a {
     background-color:#f5ceaf;
     color:#383839;
     border-color:#383839
 }
-.engineers-type-unknown {
+.financecredit-companies, .financecredit-companies a {
     background-color:#eadfff;
     color:#383839;
     border-color:#383839
 }
-.fiscal-tax-policy {
+.real-estate, .real-estate a {
     background-color:#ffefff;
     color:#383839;
     border-color:#383839
 }
-.lobbyists {
+.securities-investment, .securities-investment a {
     background-color:#ffd893;
     color:#383839;
     border-color:#383839
 }
-.clergy-religious-organizations {
+.party-committees, .party-committees a {
     background-color:#ecbfa2;
     color:#383839;
     border-color:#383839
 }
-.computer-manufacture-services {
+.construction-services, .construction-services a {
     background-color:#f2c077;
     color:#383839;
     border-color:#383839
 }
-.telecommunications {
+.commercial-banks, .commercial-banks a {
     background-color:#fabc33;
     color:#ffffff;
     border-color:#ffffff
 }
-.abortion-policypro-life {
+.intl-orgs, .intl-orgs a {
     background-color:#d4ac57;
     color:#ffffff;
     border-color:#ffffff
 }
-.medical-schools {
+.republicanconservative, .republicanconservative a {
     background-color:#a28162;
     color:#ffffff;
     border-color:#ffffff
 }
-.tvmoviesmusic {
+.food-beverage, .food-beverage a {
     background-color:#d7d7d7;
     color:#333333;
     border-color:#333333
 }
-.misc-defense {
+.misc-energy, .misc-energy a {
     background-color:#a1a1a1;
     color:#ffffff;
     border-color:#ffffff
 }
-.trucking {
+.misc-manufacturing-distributing, .misc-manufacturing-distributing a {
     background-color:#7d7d7d;
     color:#ffffff;
     border-color:#ffffff
 }
-.recycling-of-metal-paper-plastics-etc {
+.printing-publishing, .printing-publishing a {
     background-color:#555555;
     color:#ffffff;
     border-color:#ffffff
 }
-.financecredit-companies {
+.l, .l a {
     background-color:#363636;
     color:#ffffff;
     border-color:#ffffff
 }
-.nonpartisan-elected-officials-candidates {
+.misc-unions, .misc-unions a {
     background-color:#000000;
     color:#ffffff;
     border-color:#ffffff
 }
-.pharmaceutical-manufacturing {
+.abortion-policypro-life, .abortion-policypro-life a {
     background-color:#f4d67e;
     color:#3180cf;
     border-color:#3180cf
 }
-.department-variety-convenience-stores {
+.electric-utilities, .electric-utilities a {
     background-color:#ffd078;
     color:#3180cf;
     border-color:#3180cf
 }
-.leadership-pacs {
+.general-contractors, .general-contractors a {
     background-color:#ffda77;
     color:#3180cf;
     border-color:#3180cf
 }
-.environmental-policy {
+.public-sector-unions, .public-sector-unions a {
     background-color:#f0c193;
     color:#3180cf;
     border-color:#3180cf
 }
-.metal-mining-processing {
+.human-rights, .human-rights a {
     background-color:#e3a924;
     color:#fbeafc;
     border-color:#fbeafc
 }
-.health-professionals {
+.leadership-pacs, .leadership-pacs a {
     background-color:#e0a24f;
     color:#fbeafc;
     border-color:#fbeafc
 }
-.business-services {
+.hospitalsnursing-homes, .hospitalsnursing-homes a {
     background-color:#cccccc;
     color:#6f6065;
     border-color:#6f6065
 }
-.meat-processing-products {
+.pharmaceuticalshealth-products, .pharmaceuticalshealth-products a {
     background-color:#cccccc;
     color:#6a4b08;
     border-color:#6a4b08
 }
-.building-trade-unions {
+.food-processing-sales, .food-processing-sales a {
     background-color:#cccccc;
     color:#a67e00;
     border-color:#a67e00
 }
-.womens-issues {
+.mining, .mining a {
     background-color:#cccccc;
     color:#5c679f;
     border-color:#5c679f
 }
-.non-profit-institutions {
+.business-services, .business-services a {
     background-color:#cccccc;
     color:#043a66;
     border-color:#043a66
 }
-.retired {
+.sea-transport, .sea-transport a {
     background-color:#cccccc;
     color:#3180cf;
     border-color:#3180cf
 }
-.defense-policy-hawks {
+.misc-issues, .misc-issues a {
     background-color:#093969;
     color:#e3a038;
     border-color:#e3a038
 }
-.professional-sports-arenas-related-equip-svcs {
+.electronics-mfg-services, .electronics-mfg-services a {
     background-color:#093969;
     color:#e8ddff;
     border-color:#e8ddff
 }
-.schools-colleges {
+.3, .3 a {
     background-color:#093969;
     color:#a59e8e;
     border-color:#a59e8e
 }
-.native-american-tribes-governing-units {
+.defense-aerospace, .defense-aerospace a {
     background-color:#093969;
     color:#ffd493;
     border-color:#ffd493
 }
-.household-appliances {
+.democraticliberal, .democraticliberal a {
     background-color:#093969;
     color:#e1c5d3;
     border-color:#e1c5d3
 }
-.misc-services {
+.transportation-unions, .transportation-unions a {
     background-color:#093969;
     color:#ffffff;
     border-color:#ffffff
 }
-.securities-commodities-investment {
+.abortion-policypro-choice, .abortion-policypro-choice a {
     background-color:#e0c5cc;
     color:#ffffff;
     border-color:#ffffff
 }
-.electric-power-utilities {
+.gun-rights, .gun-rights a {
     background-color:#e0c5cc;
     color:#ac8800;
     border-color:#ac8800
 }
-.oil-gas {
+.lodgingtourism, .lodgingtourism a {
     background-color:#e0c5cc;
     color:#6d6165;
     border-color:#6d6165
 }
-.agricultural-servicesproducts {
+.accountants, .accountants a {
     background-color:#e0c5cc;
     color:#067add;
     border-color:#067add
 }
-.marketing-research-services {
+.health-professionals, .health-professionals a {
     background-color:#e0c5cc;
     color:#5680ba;
     border-color:#5680ba
 }
-.democraticliberal {
+.trucking, .trucking a {
     background-color:#e0c5cc;
     color:#00609e;
     border-color:#00609e
 }
-.childrens-rights {
+.business-associations, .business-associations a {
     background-color:#629df7;
     color:#00ffff;
     border-color:#00ffff
 }
-.education {
+.misc-services, .misc-services a {
     background-color:#629df7;
     color:#ffe5ee;
     border-color:#ffe5ee
 }
-.warehousing {
+.womens-issues, .womens-issues a {
     background-color:#629df7;
     color:#fed6a5;
     border-color:#fed6a5
 }
-.lawyerslaw-firms {
+.pro-israel, .pro-israel a {
     background-color:#629df7;
     color:#bedb39;
     border-color:#bedb39
 }
-.cruise-ships-lines {
+.defense-electronics, .defense-electronics a {
     background-color:#629df7;
     color:#00446b;
     border-color:#00446b
 }
-.unknown {
+.fisheries-wildlife, .fisheries-wildlife a {
     background-color:#629df7;
     color:#625004;
     border-color:#625004
 }
-.livestock {
+.foreign-defense-policy, .foreign-defense-policy a {
     background-color:#6e590a;
     color:#87a1f8;
     border-color:#87a1f8
 }
-.employer-listed-but-category-unknown {
+.health-serviceshmos, .health-serviceshmos a {
     background-color:#6e590a;
     color:#e9a230;
     border-color:#e9a230
 }
-.insurance {
+.misc-communicationselectronics, .misc-communicationselectronics a {
     background-color:#6e590a;
     color:#bedb39;
     border-color:#bedb39
 }
-.chambers-of-commerce {
+.misc-defense, .misc-defense a {
     background-color:#6e590a;
     color:#fed6a5;
     border-color:#fed6a5
 }
-.printing-publishing {
+.misc-finance, .misc-finance a {
     background-color:#6e590a;
     color:#ffe5ee;
     border-color:#ffe5ee
 }
-.waste-management {
+.recreationlive-entertainment, .recreationlive-entertainment a {
     background-color:#6e590a;
     color:#00ffff;
     border-color:#00ffff
 }
-
-.r {
-
+.automotive, .automotive a {
+    background-color:#e6c8e0;
+    color:#029030;
+    border-color:#029030
 }
-
-.d {
-    
+.chemical-related-manufacturing, .chemical-related-manufacturing a {
+    background-color:#c08234;
+    color:#463360;
+    border-color:#463360
 }
-
-.l {
-    
+.misc-health, .misc-health a {
+    background-color:#c8f893;
+    color:#4b2b69;
+    border-color:#4b2b69
 }
-
-.i {
-    
+.tobacco, .tobacco a {
+    background-color:#98cea2;
+    color:#cc5034;
+    border-color:#cc5034
 }
-.3 {
-    
+.agricultural-servicesproducts, .agricultural-servicesproducts a {
+    background-color:#d8fdcb;
+    color:#8457a7;
+    border-color:#8457a7
+}
+.casinosgambling, .casinosgambling a {
+    background-color:#0fa0a8;
+    color:#fabc90;
+    border-color:#fabc90
+}
+.forestry-forest-products, .forestry-forest-products a {
+    background-color:#f3c855;
+    color:#0104fc6;
+    border-color:#0104fc6
+}
+.special-trade-contractors, .special-trade-contractors a {
+    background-color:#a7f9dc;
+    color:#667fab;
+    border-color:#667fab
+}
+.beer-wine-liquor, .beer-wine-liquor a {
+    background-color:#5d3189;
+    color:#809ea0;
+    border-color:#809ea0
+}
+.building-materials-equipment, .building-materials-equipment a {
+    background-color:#292d3a;
+    color:#0575fc;
+    border-color:#0575fc
+}
+.building-trade-unions, .building-trade-unions a {
+    background-color:#e0f9f0;
+    color:#934a9c;
+    border-color:#934a9c
+}
+.clergy-religious-organizations, .clergy-religious-organizations a {
+    background-color:#f24114;
+    color:#b6d9cf;
+    border-color:#b6d9cf
+}
+.environmental-svcsequipment, .environmental-svcsequipment a {
+    background-color:#3c88c2;
+    color:#171f33;
+    border-color:#171f33
+}
+.home-builders, .home-builders a {
+    background-color:#b3c371;
+    color:#535929;
+    border-color:#535929
+}
+.industrial-unions, .industrial-unions a {
+    background-color:#a6e8d9;
+    color:#0c8967;
+    border-color:#0c8967
+}
+.misc-business, .misc-business a {
+    background-color:#c3f998;
+    color:#8e30ca;
+    border-color:#8e30ca
+}
+.misc-transport, .misc-transport a {
+    background-color:#91d578;
+    color:#1a3183;
+    border-color:#1a3183
 }

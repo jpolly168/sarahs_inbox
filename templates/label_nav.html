@@ -1,0 +1,12 @@
+{% load inbox_extras %}
+{% for label in labels %}
+	{% if forloop.counter == 10 %}
+	<li class="labelModule"><span class="labelLabel">{{ forloop.revcounter }} more &darr;</span>
+		<ul>
+	{% endif %}
+	<li class="labelList"><a href="/label/{{label.industry|slugify}}">{{label.industry|industry_name}}<span class="label labelKey {{label.industry|slugify}}">Key</span></a></li>
+	{% if forloop.last %}
+		</ul>
+	</li>
+	{% endif %}
+{% endfor %}
