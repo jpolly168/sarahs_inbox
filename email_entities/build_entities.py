@@ -1,28 +1,63 @@
 # Create your views here.
-from dcentity.models import *
-from oxtail.matching import *
+#from dcentity.models import *
+#from oxtail.matching import *
 from mail.models import *
 from email_entities.models import *
-try:
-    import json
-except:
-    import simplejson as json
+from django.db.models import Q
 from django.template.defaultfilters import slugify
+import httplib2
+import json
+import urllib
+import settings
 
-def build_industries(entity):
-    industry = None
+h = httplib2.Http()
+
+def _match(text):
+    text = urllib.quote(text)
+    req_url = 'https://inbox.influenceexplorer.com/contextualize?text="%s"&apikey=%s'%(text, settings.APIKEY)
+    r, c = h.request(req_url)
+    if r.get('status') == '200':
+        return json.loads(c)
+    else:
+        print r.get('status')
+        print req_url
+
+def _entity(id):
+    req_url = 'http://transparencydata.com/api/1.0/entities/%s.json?apikey=%s'%(id, settings.APIKEY)
+    r, c = h.request(req_url)
+    if r.get('status') == '200':
+        return json.loads(c)
+    else:
+        print r.get('status')
+        print req_url
+
+def build_industries(entity): #adding an arbitrary comment to trigger file change
+    industry = []
 
     if entity.entity_type == u'organization':
-        industry = Entity.objects.filter( industry_entity__entity__organization_metadata__entity__id=entity.entity)
+        try:
+            industry_id = _entity(entity.entity).get('metadata').get('industry_entity')
+            industry.append(_entity(industry_id))
+        except:
+            pass
     elif entity.entity_type == u'individual':
-        industry = Entity.objects.raw("select id, name from matchbox_entity where matchbox_entity.id in (select distinct industry_entity_id from matchbox_indivorgaffiliations indiv inner join matchbox_organizationmetadata org on indiv.organization_entity_id = org.entity_id where indiv.individual_entity_id = %s)", [entity.entity])
+        org_ids = []
+        try:
+            orgs = _entity(entity.entity).get('metadata').get('affiliated_organizations')
+            for org in orgs:
+                industry.append(_entity(org.get("id")))
+        except:
+            pass
     elif entity.entity_type == u'politician':
-        industry = PoliticianMetadataLatest.objects.get(entity__id = entity.entity).party
+        try:
+            industry = _entity(entity.entity).get('metadata').get('party')
+        except:
+            pass
 
-    if industry is not None:
+    if industry is not [] and industry != "UNKNOWN":
         for i in industry:
             try:
-                str = i.name
+                str = i.get('name')
             except:
                 str = i
             EmailEntityIndustry.objects.create(
@@ -36,28 +71,21 @@ def build_industries(entity):
 def build_table():
     #this only needs to run once
     emails_to_search = Email.objects.only('to','cc','text','id')
-    
     for email in emails_to_search:
         print "doing "+email.subject
-        meta = str(email.to.all())+str(email.cc.all())
-        m = match(meta+email.text)
-        for key, value in m.items():
-            try:
-                e = Entity.objects.get(pk = key)
-            except:
-                continue
+        entity_matches = _match(email.text)
+        for entity in entity_matches.get('entities'):
             
-            #since match() returns a list of references, store it as a JSON-formatted string
-            r = json.dumps(map(unicode, value))
+            e = entity.get('entity_data')      
+            r = json.dumps(map(unicode, entity.get('matched_text')))
         
             ee = EmailEntity.objects.create(
                 mail            = email,
-                entity          = e.id,
-                entity_name     = e.name,
-                entity_type     = e.type,
+                entity          = e.get('id'),
+                entity_name     = e.get('name'),
+                entity_type     = e.get('type'),
                 references      = r,
             )
-            
             build_industries(ee)
     
     print('\a')*3

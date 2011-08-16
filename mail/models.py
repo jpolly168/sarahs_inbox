@@ -98,7 +98,7 @@ class Thread(models.Model):
             return html_pieces[0] + ' .. ' + Email.NAME_SEPARATOR.join(html_pieces[-6:])
         self.all_recipient_html = Email.NAME_SEPARATOR.join(html_pieces)
     
-    def save(self):
+    def save(self, **kwargs):
         # do some stat-calculation prior to save
         emails = Email.objects.filter(email_thread=self).order_by('creation_date_time')
 

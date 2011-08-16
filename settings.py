@@ -101,6 +101,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
 ROOT_URLCONF = 'urls'
 
 INSTALLED_APPS = (
@@ -114,7 +116,8 @@ INSTALLED_APPS = (
     'mail_dedupe',
     'mediasync',
     'haystack',
-    'email_entities'
+    'email_entities',
+    'django_nose',
 )
 
 try:
