@@ -146,7 +146,7 @@ header { padding-bottom: 10px; padding-top: 10px;}
 
 table { width: 100%; }
 #mainView td { background: #f4f3ec url(images/bg_gradient.png) bottom left repeat-x; border-bottom: 1px solid #ebeae1; }
-td { padding: 5px 10px; line-height: 19px; }
+td { padding: 5px 10px}
 #mainView .read td { background-color: #fcfcfa; }
 #mainView .unread { font-weight: bold;}
 .star { text-indent: -9999em; display: block; background: url(images/bg_stars.png) left top no-repeat; height: 13px; width: 14px; margin-top: 4px;}
@@ -188,15 +188,14 @@ footer { margin: 50px auto; width: 940px;}
 .messageTitle { float: left; }
 .titleTag { float: right; padding: 1px 5px;}
 
-.label, li.labelList { font-family: arial, sans-serif; font-size: 75%; margin-right: 10px; font-weight: normal;  text-transform:lowercase;}
+.label, li.labelList { font-family: arial, sans-serif; font-size: 100%; margin-right: 10px; font-weight: normal;  text-transform:lowercase;}
 
-.label {background-color: #ece9d2; -moz-border-radius: 3px; -webkit-border-radius: 3px; padding: 0px 1px; border: 1px solid #d7c415; color:#d7c415; display: inline-block; margin-top: 5px;}
+.label {color:#a2a2a2; margin-top: 5px; font-style: italic;}
 
 .mainMessTitle .label { float: right; margin-top: -3px; }
 
-.entityHighlight {
-    background-color:#457BC5;
-    color: white;
+#main .entityHighlight {
+    text-decoration: underline;
 }
 .entityPopup {
     display:none;
@@ -220,7 +219,7 @@ footer { margin: 50px auto; width: 940px;}
 .messageTitle { float: left; }
 .titleTag { float: right; padding: 1px 5px;}
 
-.r, .r a {
+/*.r, .r a {
     background-color:#69060C;
     color:#ffffff;
     border-color:#ffffff
@@ -664,4 +663,4 @@ footer { margin: 50px auto; width: 940px;}
     background-color:#91d578;
     color:#1a3183;
     border-color:#1a3183
-}
+}*/
